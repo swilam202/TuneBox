@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 
+import 'features/search screen/presentation/manager/search page cubit.dart';
 import 'features/splash screen/presentation/views/splash page.dart';
 
 //import 'features/splash screen/presentation/views/splash screen.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>HomePageCubit()..loadData())
+        BlocProvider(create: (context)=>HomePageCubit()..loadData()),
+        BlocProvider(create: (context)=>SearchPageCubit()..loadData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -3,7 +3,9 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
 import 'package:musicapp/song%20model.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -26,13 +28,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromRGBO(46, 46, 46, 1.0),
-        brightness: Brightness.dark,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context)=>HomePageCubit()..loadData())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromRGBO(46, 46, 46, 1.0),
+          brightness: Brightness.dark,
+        ),
+        home: const SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

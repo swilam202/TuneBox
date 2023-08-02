@@ -1,3 +1,5 @@
+import 'package:musicapp/features/home%20screen/data/song%20model.dart';
+
 abstract class HomePageState {}
 
 class HomePageInitialState extends HomePageState {
@@ -9,7 +11,7 @@ class HomePageInitialState extends HomePageState {
 class HomePageLoadingState extends HomePageState {}
 
 class HomePageSuccessState extends HomePageState {
-  List songs;
+  List<Song> songs;
 
   HomePageSuccessState({required this.songs});
 }

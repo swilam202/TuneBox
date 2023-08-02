@@ -1,9 +1,39 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/home%20screen/data/song%20model.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/song%20details%20page.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-class ListViewItem extends StatelessWidget {
-  const ListViewItem({super.key,});
+class ListViewItem extends StatefulWidget {
+  const ListViewItem({super.key, required this.song});
+
+  final Song song;
+
+  @override
+  State<ListViewItem> createState() => _ListViewItemState();
+}
+
+class _ListViewItemState extends State<ListViewItem> {
+
+  Uint8List? ima;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  // getImage()async{
+  //   final metaData = await MetadataRetriever.fromFile(File(widget.song.data!));
+  //   setState(() {
+  //     ima = metaData.albumArt;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +60,8 @@ class ListViewItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.red,
-                image: const DecorationImage(
-                  image: AssetImage(
-                    'assets/images/test2.jpg',
-                  ),
+                image:  DecorationImage(
+                  image: MemoryImage(widget.song.image!),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -44,7 +72,7 @@ class ListViewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                   'title',
+                    widget.song.title ?? 'No name',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
@@ -54,7 +82,7 @@ class ListViewItem extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Taylor swift',
+                    widget.song.artist ?? 'Unkown',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
@@ -65,7 +93,7 @@ class ListViewItem extends StatelessWidget {
                 ],
             ),
              ),
-            
+
             const Icon(
               Icons.play_arrow,
               size: 30,

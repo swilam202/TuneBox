@@ -20,9 +20,9 @@ class HomePageBody extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Expanded(
                 child: ListView.builder(
-                  itemCount: 20,
+                  itemCount: state.songs.length,
                   itemBuilder: (context, index) {
-                    return ListViewItem();
+                    return ListViewItem(song: state.songs[index]);
                   },
                 ),
               ),

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
 import 'package:musicapp/features/splash%20screen/presentation/views/widgets/splash%20body.dart';

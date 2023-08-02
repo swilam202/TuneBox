@@ -10,12 +10,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'search page state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState>{
-  SearchPageCubit():super(SearchPageInitialState(message: 'There is no songs try now'));
+  SearchPageCubit():super(SearchPageInitialState());
 
   SqlDB sqlDB = SqlDB();
   loadData()async{
     emit(SearchPageLoadingState());
-
+    sqlDB.deleteAll();
     try{
         late List<SongModel> mp3songs;
 
@@ -40,6 +40,10 @@ class SearchPageCubit extends Cubit<SearchPageState>{
       emit(SearchPageFailureState(errorMessage: e.toString()));
     }
 
+  }
+
+  void getBack(){
+    emit(SearchPageInitialState());
   }
 
 }

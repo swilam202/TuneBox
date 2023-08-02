@@ -19,25 +19,8 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class  MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-
-
-class _MyAppState extends State<MyApp> {
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +29,6 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color.fromRGBO(46, 46, 46, 1.0),
         brightness: Brightness.dark,
       ),
-
       home: const SplashScreen(),
     );
   }

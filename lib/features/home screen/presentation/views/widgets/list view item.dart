@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/views/song%20details%20page.dart';
 
 class ListViewItem extends StatelessWidget {
   const ListViewItem({super.key});
@@ -6,7 +7,9 @@ class ListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SongDetailsPage(),),);
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
         padding: const EdgeInsets.all(10),

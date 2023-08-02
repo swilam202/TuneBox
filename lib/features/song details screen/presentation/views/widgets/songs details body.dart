@@ -18,7 +18,9 @@ class SongDetailsBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   icon: const Icon(
                     Icons.arrow_downward_rounded,
                     size: 50,

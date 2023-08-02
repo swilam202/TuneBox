@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:musicapp/features/home%20screen/presentation/views/widgets/list%20view%20item.dart';
+import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/home%20screen/presentation/views/widgets/list%20view%20item.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class HomePageBody extends StatelessWidget {
-  const HomePageBody({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,7 +15,7 @@ class HomePageBody extends StatelessWidget {
         child: Expanded(
           child: ListView.builder(
             itemCount: 20,
-            itemBuilder: (context,index){
+            itemBuilder: (context, index) {
               return ListViewItem();
             },
           ),

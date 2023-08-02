@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/song%20details%20page.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class ListViewItem extends StatelessWidget {
-  const ListViewItem({super.key});
+  const ListViewItem({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -38,27 +39,33 @@ class ListViewItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Shake it',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 25,
+             Expanded(
+               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                   'title',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  'Taylor swift',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
+                  SizedBox(height: 5),
+                  Text(
+                    'Taylor swift',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
+                ],
             ),
-            const Spacer(),
+             ),
+            
             const Icon(
               Icons.play_arrow,
               size: 30,

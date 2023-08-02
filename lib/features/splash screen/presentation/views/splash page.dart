@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:musicapp/core/database/sql%20database.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
 import 'package:musicapp/features/splash%20screen/presentation/views/widgets/splash%20body.dart';
 
@@ -16,11 +17,13 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController animationController;
   late Animation<double> animation;
 
+  SqlDB sqlDB = SqlDB();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     initAnimation();
+    sqlDB.db;
   }
 
   @override
@@ -51,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
             const Duration(seconds: 2),
             () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                builder: (context) =>  HomePage(),
               ),
             ),
           ),

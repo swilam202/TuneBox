@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
 import 'package:musicapp/song%20model.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
@@ -19,17 +21,18 @@ void main() {
   runApp(const MyApp());
 }
 
-class  MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromRGBO(46, 46, 46, 1.0),
         brightness: Brightness.dark,
       ),
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
@@ -72,11 +75,6 @@ class  MyApp extends StatelessWidget {
 //     mp3songs = await OnAudioQuery.platform.querySongs();
 //
 //     mp3songs = mp3songs.where((element) => element.data.endsWith('.mp3')).toList();
-//
-//      for(int i = 0;i < songs.length;i++){
-//       // songs[i] = Song(data: mp3songs[i].data, duration: mp3songs[i].duration, artist: mp3songs[i].artist, title: mp3songs[i].title,image:  MetadataRetriever.fromFile(File(mp3songs[i].data)));
-//      }
-//
 //   }
 //
 //   Uint8List? ima;
@@ -90,12 +88,14 @@ class  MyApp extends StatelessWidget {
 //             children: [
 //               ElevatedButton(
 //                 onPressed: ()async{
-// print(mp3songs[0].duration);
+//
 //                   final metaData = await MetadataRetriever.fromFile(File(mp3songs[0].data));
 //
 //                  setState(() {
 //                    ima = metaData.albumArt;
 //                  });
+//                  String data = AsciiDecoder().convert(ima!);
+//                   print(data);
 //                 },
 //                 child: Text('press me'),
 //               ),
@@ -107,4 +107,4 @@ class  MyApp extends StatelessWidget {
 //     );
 //   }
 // }
-//
+

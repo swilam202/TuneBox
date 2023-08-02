@@ -3,43 +3,30 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
-import 'package:musicapp/features/home%20screen/data/song%20model.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/views/song%20details%20page.dart';
+
+
 import 'package:on_audio_query/on_audio_query.dart';
 
-class ListViewItem extends StatefulWidget {
-  const ListViewItem({super.key, required this.song});
+
+import '../../../../song details screen/presentation/views/song details page.dart';
+import '../../../data/song model.dart';
+
+
+
+class ListViewItem extends StatelessWidget {
+   const ListViewItem({super.key,required this.song});
 
   final Song song;
 
-  @override
-  State<ListViewItem> createState() => _ListViewItemState();
-}
-
-class _ListViewItemState extends State<ListViewItem> {
-
-  Uint8List? ima;
 
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
 
-  }
-
-  // getImage()async{
-  //   final metaData = await MetadataRetriever.fromFile(File(widget.song.data!));
-  //   setState(() {
-  //     ima = metaData.albumArt;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SongDetailsPage(),),);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage(song: song),),);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
@@ -61,7 +48,7 @@ class _ListViewItemState extends State<ListViewItem> {
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.red,
                 image:  DecorationImage(
-                  image: MemoryImage(widget.song.image!),
+                  image: MemoryImage(song.image!),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -72,7 +59,7 @@ class _ListViewItemState extends State<ListViewItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.song.title ?? 'No name',
+                    song.title ?? 'No name',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
@@ -82,7 +69,7 @@ class _ListViewItemState extends State<ListViewItem> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    widget.song.artist ?? 'Unkown',
+                    song.artist ?? 'Unkown',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 15,

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/views/widgets/songs%20details%20body.dart';
+
+
+import '../../../home screen/data/song model.dart';
+import 'widgets/songs details body.dart';
+
 
 
 class SongDetailsPage extends StatelessWidget {
-  const SongDetailsPage({super.key});
-
+   const SongDetailsPage({super.key,required this.song});
+  final Song song;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: SongDetailsBody(),
+      body: SongDetailsBody(song: song),
     );
   }
 }

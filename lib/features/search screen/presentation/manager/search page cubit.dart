@@ -6,7 +6,7 @@ import 'package:musicapp/features/home%20screen/presentation/manager/home%20page
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../song model.dart';
+
 import 'search page state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState>{
@@ -30,6 +30,7 @@ class SearchPageCubit extends Cubit<SearchPageState>{
         'title': mp3songs[i].title,
         'data':mp3songs[i].data,
         'artist':mp3songs[i].artist ?? 'Unknown',
+        'duration': mp3songs[i].duration ?? 0,
       });
     }
     print('success ++++++++++++++++++++++++-------------------------------');

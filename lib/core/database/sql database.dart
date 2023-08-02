@@ -13,7 +13,7 @@ class SqlDB {
 
   initDatabase() async {
     String dbpath = await getDatabasesPath();
-    String path = join(dbpath, 'cafe.db');
+    String path = join(dbpath, 'tunebox.db');
 
     Database myDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return myDb;
@@ -26,7 +26,8 @@ class SqlDB {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     data TEXT NOT NULL,
-    artist TEXT NOT NULL
+    artist TEXT NOT NULL,
+    duration INTEGER NOT NULL
     )
     ''');
       print('init++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
@@ -50,5 +51,10 @@ class SqlDB {
     return response;
   }
 
-
+  deleteDb()async{
+    String dbpath = await getDatabasesPath();
+    String path = join(dbpath, 'cafe.db');
+    deleteDatabase(path);
+    print('data base deleted -----------------------------------');
+  }
 }

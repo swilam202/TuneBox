@@ -1,4 +1,6 @@
-import 'package:musicapp/features/home%20screen/data/song%20model.dart';
+
+
+import '../../data/song model.dart';
 
 abstract class HomePageState {}
 

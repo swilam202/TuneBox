@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/widgets/control%20row.dart';
 
+import '../../../../home screen/data/song model.dart';
+
+
+
 class SongDetailsBody extends StatelessWidget {
-  SongDetailsBody({super.key});
+  SongDetailsBody({super.key,required this.song});
 
   double sliderVal = 0;
-
+  final Song song;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,17 +38,17 @@ class SongDetailsBody extends StatelessWidget {
               width: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    'assets/images/test2.jpg',
+                image:  DecorationImage(
+                  image: MemoryImage(
+                    song.image!
                   ),
                   fit: BoxFit.fill,
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            const Text(
-              'Shake it',
+             Text(
+              song.title ?? 'No name',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -54,7 +58,7 @@ class SongDetailsBody extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Taylor Swift',
+              song.artist ?? 'Unknown',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
@@ -65,13 +69,13 @@ class SongDetailsBody extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             Slider(value: sliderVal, onChanged: (val) => sliderVal = val),
-            const Padding(
+             Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('00:00'),
-                  Text('04:14'),
+                  Text(sliderVal.toString()),
+                  Text('${song.duration ?? 0}'),
                 ],
               ),
             ),

@@ -4,10 +4,12 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
-import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
-import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20state.dart';
-import 'package:musicapp/features/home%20screen/presentation/views/widgets/list%20view%20item.dart';
+
 import 'package:on_audio_query/on_audio_query.dart';
+
+import '../../manager/home page cubit.dart';
+import '../../manager/home page state.dart';
+import 'list view item.dart';
 
 class HomePageBody extends StatelessWidget {
   @override

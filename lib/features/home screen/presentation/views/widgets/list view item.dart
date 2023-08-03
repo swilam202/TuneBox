@@ -2,7 +2,10 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 
 
 
@@ -15,19 +18,17 @@ import '../../../data/song model.dart';
 
 
 class ListViewItem extends StatelessWidget {
-   const ListViewItem({super.key,required this.song});
-final Song song;
-
-
+   const ListViewItem({super.key});
 
 
 
   @override
   Widget build(BuildContext context) {
-
+    //int index = ;
+    Song song = BlocProvider.of<SongDetailsCubit>(context).songs[BlocProvider.of<SongDetailsCubit>(context).index];
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage(song: song,),),);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage()));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),

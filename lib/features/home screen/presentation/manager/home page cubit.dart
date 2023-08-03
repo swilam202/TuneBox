@@ -15,13 +15,14 @@ class HomePageCubit extends Cubit<HomePageState> {
       : super(HomePageInitialState(message: 'There is no songs try now'));
 
   SqlDB sqlDB = SqlDB();
+  List<Song> songs = [];
 
   loadData() async {
     emit(HomePageLoadingState());
 
     try {
       List query = await sqlDB.query();
-      List<Song> songs = [];
+
 
       for (int i = 0; i < query.length; i++) {
         Metadata metaData = await MetadataRetriever.fromFile(File(query[i]['data']));

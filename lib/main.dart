@@ -15,6 +15,7 @@ import 'dart:io';
 
 import 'core/database/sql database.dart';
 import 'features/search screen/presentation/manager/search page cubit.dart';
+import 'features/song details screen/presentation/manager/song details cubit.dart';
 import 'features/splash screen/presentation/views/splash page.dart';
 
 //import 'features/splash screen/presentation/views/splash screen.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context)=>HomePageCubit()..loadData()),
         BlocProvider(create: (context)=>SearchPageCubit()),
-      //  BlocProvider(create: (context)=>SongDetailsCubit()),
+        BlocProvider(create: (context)=>SongDetailsCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

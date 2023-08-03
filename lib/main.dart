@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
+//import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context)=>HomePageCubit()..loadData()),
         BlocProvider(create: (context)=>SearchPageCubit()),
+      //  BlocProvider(create: (context)=>SongDetailsCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

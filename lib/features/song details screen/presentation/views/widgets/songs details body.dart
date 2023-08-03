@@ -1,3 +1,4 @@
+//import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/widgets/control%20row.dart';
 
@@ -7,7 +8,7 @@ import '../../../../home screen/data/song model.dart';
 
 class SongDetailsBody extends StatelessWidget {
   SongDetailsBody({super.key,required this.song});
-
+ // final player = AudioPlayer();
   double sliderVal = 0;
   final Song song;
   @override
@@ -79,7 +80,7 @@ class SongDetailsBody extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(child: SongDetailsControlRow())
+             Expanded(child: SongDetailsControlRow(song: song,))
           ],
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 
 
+
 import 'package:on_audio_query/on_audio_query.dart';
 
 
@@ -15,8 +16,7 @@ import '../../../data/song model.dart';
 
 class ListViewItem extends StatelessWidget {
    const ListViewItem({super.key,required this.song});
-
-  final Song song;
+final Song song;
 
 
 
@@ -24,9 +24,10 @@ class ListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage(song: song),),);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage(song: song,),),);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
@@ -54,8 +55,8 @@ class ListViewItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-             Expanded(
-               child: Column(
+            Expanded(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -78,8 +79,8 @@ class ListViewItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
+              ),
             ),
-             ),
 
             const Icon(
               Icons.play_arrow,

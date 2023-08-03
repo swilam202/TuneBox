@@ -19,7 +19,7 @@ class SearchPage extends StatelessWidget {
       body: BlocBuilder<SearchPageCubit, SearchPageState>(
         builder: (context, state) {
           if (state is SearchPageSuccessState) {
-            return const SearchSuccess();
+            return  SearchSuccess(length: state.length);
           } else if (state is SearchPageFailureState) {
             return const SearchFail();
           } else if (state is SearchPageInitialState) {

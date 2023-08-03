@@ -17,13 +17,13 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController animationController;
   late Animation<double> animation;
 
-  SqlDB sqlDB = SqlDB();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     initAnimation();
-    sqlDB.db;
+
   }
 
   @override
@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
         CurvedAnimation(parent: animationController, curve: Curves.bounceInOut);
     animationController.forward().then(
           (value) => Future.delayed(
-            const Duration(seconds: 2),
+            const Duration(milliseconds: 1500),
             () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) =>  HomePage(),

@@ -6,8 +6,8 @@ import '../../manager/search page cubit.dart';
 
 
 class SearchSuccess extends StatelessWidget {
-  const SearchSuccess({super.key});
-
+  const SearchSuccess({super.key,required this.length});
+final int length;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,6 +28,13 @@ class SearchSuccess extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 28,
+            ),
+          ),
+          Text(
+            '$length songs were found',
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 25,
             ),
           ),
           OutlinedButton(

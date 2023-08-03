@@ -34,7 +34,7 @@ class SearchPageCubit extends Cubit<SearchPageState>{
       });
     }
     print('success ++++++++++++++++++++++++-------------------------------');
-    emit(SearchPageSuccessState());
+    emit(SearchPageSuccessState(length: mp3songs.length));
     }
     catch(e){
       emit(SearchPageFailureState(errorMessage: e.toString()));

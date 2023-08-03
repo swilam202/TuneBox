@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 
+import 'core/database/sql database.dart';
 import 'features/search screen/presentation/manager/search page cubit.dart';
 import 'features/splash screen/presentation/views/splash page.dart';
 
@@ -20,6 +21,9 @@ import 'features/splash screen/presentation/views/splash page.dart';
 //import 'fueatures/splash screen/presentation/views/splash screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SqlDB sqlDB = SqlDB();
+  sqlDB.db;
   runApp(const MyApp());
 }
 

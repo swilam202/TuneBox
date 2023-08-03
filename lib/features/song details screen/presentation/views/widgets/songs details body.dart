@@ -26,7 +26,7 @@ class SongDetailsBody extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   icon: const Icon(
-                    Icons.arrow_downward_rounded,
+                    Icons.keyboard_arrow_down_sharp,
                     size: 50,
                   ),
                 ),

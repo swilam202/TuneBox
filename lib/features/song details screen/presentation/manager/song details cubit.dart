@@ -14,6 +14,8 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
   AudioPlayer player = AudioPlayer();
   int index = 0;
   bool isPlaying = false;
+  //0 is repeat 1 is next 2 is random
+  int autoMode = 0;
   void getAllSongs(List<Song> list){
     songs = list;
   }
@@ -56,6 +58,15 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
       isPlaying = true;
     }
 
+  }
+
+  auto(){
+    if(autoMode > 2){
+      autoMode = 0;
+    }
+    else{
+      autoMode++;
+    }
   }
 
 }

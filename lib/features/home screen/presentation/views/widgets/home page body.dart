@@ -33,8 +33,6 @@ class HomePageBody extends StatelessWidget {
                     BlocProvider.of<SongDetailsCubit>(context).pausePlayer();
 
                     BlocProvider.of<SongDetailsCubit>(context).getAllSongs(state.songs);
-                   // BlocProvider.of<SongDetailsCubit>(context).index = index;
-                    //BlocProvider.of<SongDetailsCubit>(context).getAllSongs(state.songs);
                     return ListViewItem(index: index);
                   },
                 ),

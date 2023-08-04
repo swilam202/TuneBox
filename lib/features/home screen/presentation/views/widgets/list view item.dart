@@ -18,17 +18,17 @@ import '../../../data/song model.dart';
 
 
 class ListViewItem extends StatelessWidget {
-   const ListViewItem({super.key});
+   const ListViewItem({super.key,required this.index});
 
-
+final int index;
 
   @override
   Widget build(BuildContext context) {
     //int index = ;
-    Song song = BlocProvider.of<SongDetailsCubit>(context).songs[BlocProvider.of<SongDetailsCubit>(context).index];
+    Song song = BlocProvider.of<SongDetailsCubit>(context).songs[index];
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage(index: index,)));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),

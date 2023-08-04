@@ -14,8 +14,8 @@ import 'widgets/songs details body.dart';
 
 
 class SongDetailsPage extends StatefulWidget {
-   const SongDetailsPage({super.key});
-  // final int index;
+   const SongDetailsPage({super.key,required this.index});
+   final int index;
 
   @override
   State<SongDetailsPage> createState() => _SongDetailsPageState();
@@ -27,6 +27,7 @@ class _SongDetailsPageState extends State<SongDetailsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    BlocProvider.of<SongDetailsCubit>(context).index = widget.index;
     BlocProvider.of<SongDetailsCubit>(context).loadSong();
   }
 
@@ -37,7 +38,7 @@ class _SongDetailsPageState extends State<SongDetailsPage> {
       body: BlocBuilder<SongDetailsCubit,SongDetailsState>(
         builder: (context,state){
           if(state is SongDetailsSuccessState){
-           return SongDetailsBody(song: BlocProvider.of<SongDetailsCubit>(context).songs[BlocProvider.of<SongDetailsCubit>(context).index],);
+           return SongDetailsBody(song: state.song,);
           }
           else if(state is SongDetailsFailureState){
             return Center(child: Text(state.errorMessage),);

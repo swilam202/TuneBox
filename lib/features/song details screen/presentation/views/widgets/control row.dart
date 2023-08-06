@@ -19,7 +19,7 @@ class SongDetailsControlRow extends StatefulWidget {
 }
 
 class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
-  bool isPlaying = false;
+  //bool isPlaying = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +40,7 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
         IconButton(
           onPressed: () async {
             await songDetailsCubit.player.pause();
+            songDetailsCubit.isPlaying = false;
             songDetailsCubit.index--;
             songDetailsCubit.loadSong();
           },
@@ -51,8 +52,9 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
         IconButton(
           onPressed: () async {
             await songDetailsCubit.playSong();
-            setState(() {
-            });
+setState(() {
+  songDetailsCubit.isPlaying = !songDetailsCubit.isPlaying;
+});
           },
           icon: songDetailsCubit.isPlaying? Icon(Icons.pause,size: 40,):Icon(Icons.play_arrow,size: 40,),
         ),
@@ -60,6 +62,7 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
             onPressed: () async {
 
               await songDetailsCubit.player.pause();
+              songDetailsCubit.isPlaying = false;
              if(songDetailsCubit.autoMode == 1){
                songDetailsCubit.index++;
 
@@ -71,6 +74,8 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
              }
 
               songDetailsCubit.loadSong();
+
+
             },
             icon: const Icon(
               Icons.skip_next_rounded,
@@ -78,15 +83,18 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
             )),
         IconButton(
           onPressed: () async{
-            songDetailsCubit.auto();
-            setState(() {});
+            songDetailsCubit.switchMode();
+           // songDetailsCubit.player.seekToNext()
+            setState(() {
+            });
           },
           icon:  Icon(
-            songDetailsCubit.autoMode == 0? Icons.repeat_one:songDetailsCubit.autoMode == 1?Icons.repeat:Icons.account_circle_rounded,
+            songDetailsCubit.autoMode == 0? Icons.repeat_one:songDetailsCubit.autoMode == 1?Icons.repeat:Icons.shuffle,
             size: 20,
           ),
         ),
       ],
     );
   }
+
 }

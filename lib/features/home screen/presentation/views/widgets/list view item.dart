@@ -50,7 +50,7 @@ final int index;
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.red,
                 image:  DecorationImage(
-                  image: MemoryImage(song.image!),
+                  image: getImage(song),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -91,5 +91,18 @@ final int index;
         ),
       ),
     );
+  }
+
+}
+
+
+ImageProvider getImage(Song song){
+  if(song.image != null){
+    return MemoryImage(
+        song.image!
+    );
+  }
+  else{
+    return AssetImage('assets/images/music.png');
   }
 }

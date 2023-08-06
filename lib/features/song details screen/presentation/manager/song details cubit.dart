@@ -14,6 +14,7 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
   AudioPlayer player = AudioPlayer();
   int index = 0;
   bool isPlaying = false;
+  bool isFavorite = false;
   //0 is repeat 1 is next 2 is random
   int autoMode = 0;
   void getAllSongs(List<Song> list){
@@ -50,17 +51,18 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
 
   playSong()async{
     if(isPlaying){
+
       await player.pause();
-      isPlaying = false;
+
     }
     else{
      await player.play();
-      isPlaying = true;
+
     }
 
   }
 
-  auto(){
+  switchMode(){
     if(autoMode > 2){
       autoMode = 0;
     }

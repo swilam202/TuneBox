@@ -53,20 +53,23 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
               ],
             ),
             const SizedBox(height: 30),
-            Container(
-              height: 300,
-              width: 300,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                image:  DecorationImage(
-                  image: MemoryImage(
-                      widget.song.image!
+            Expanded(
+              //height: MediaQuery.of(context).size.height *0.5,
+              child: AspectRatio(
+                aspectRatio: 1.5/1,
+                child: Container(
+
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    image:  DecorationImage(
+                      image: getImage(),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                  fit: BoxFit.fill,
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
              Text(
               widget.song.title ?? 'No name',
               style: TextStyle(
@@ -92,7 +95,7 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
               await BlocProvider.of<SongDetailsCubit>(context).player.seek(Duration(milliseconds: 2500));
             }),
              Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -101,10 +104,24 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                 ],
               ),
             ),
-             Expanded(child: SongDetailsControlRow(song:  widget.song))
+            const SizedBox(height: 30),
+             SongDetailsControlRow(song:  widget.song),
+
+            const SizedBox(height: 40),
           ],
         ),
       ),
     );
+  }
+
+ ImageProvider getImage(){
+    if(widget.song.image != null){
+      return MemoryImage(
+          widget.song.image!
+      );
+    }
+    else{
+      return const AssetImage('assets/images/music.png');
+    }
   }
 }

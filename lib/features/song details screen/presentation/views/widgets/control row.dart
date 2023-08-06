@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:musicapp/core/database/sql%20database.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 
 import '../../../../home screen/data/song model.dart';
@@ -31,7 +32,11 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () async{
+           await SqlDB().insert({
+              'id': songDetailsCubit.songs[songDetailsCubit.index].id!
+            }, 'favorite');
+          },
           icon: const Icon(
             Icons.favorite_border,
             size: 20,

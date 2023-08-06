@@ -31,7 +31,8 @@ class SearchPageCubit extends Cubit<SearchPageState>{
         'data':mp3songs[i].data,
         'artist':mp3songs[i].artist ?? 'Unknown',
         'duration': mp3songs[i].duration ?? 0,
-      });
+      },'songs');
+ 
     }
     print('success ++++++++++++++++++++++++-------------------------------');
     emit(SearchPageSuccessState(length: mp3songs.length));

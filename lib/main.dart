@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/favorite%20screen/presentation/manager/favorite%20song%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
 //import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>HomePageCubit()..loadData()),
         BlocProvider(create: (context)=>SearchPageCubit()),
         BlocProvider(create: (context)=>SongDetailsCubit()),
+        BlocProvider(create: (context)=>FavoritePageCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

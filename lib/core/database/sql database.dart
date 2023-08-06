@@ -22,7 +22,7 @@ class SqlDB {
   _onCreate(Database db, int version) async {
     Batch batch = db.batch();
     batch.execute('''
-    CREATE TABLE notes (
+    CREATE TABLE songs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     data TEXT NOT NULL,
@@ -30,30 +30,35 @@ class SqlDB {
     duration INTEGER NOT NULL
     )
     ''');
+    batch.execute('''
+    CREATE TABLE favorite (
+    id INTEGER
+    )
+    ''');
       print('init++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
     await batch.commit();
   }
 
-  query() async {
-    List response = await _db!.query('notes');
+  query(String table) async {
+    List response = await _db!.query(table);
     return response;
   }
 
-  insert(Map<String, Object> map) async {
-    int response = await _db!.insert('notes', map);
+  insert(Map<String, Object> map,String table) async {
+    int response = await _db!.insert(table, map);
     return response;
   }
 
 
 
   deleteAll() async {
-    int response = await _db!.delete('notes');
+    int response = await _db!.delete('songs');
     return response;
   }
 
   deleteDb()async{
     String dbpath = await getDatabasesPath();
-    String path = join(dbpath, 'cafe.db');
+    String path = join(dbpath, 'tunebox.db');
     deleteDatabase(path);
     print('data base deleted -----------------------------------');
   }

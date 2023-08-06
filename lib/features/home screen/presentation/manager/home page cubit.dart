@@ -21,7 +21,7 @@ class HomePageCubit extends Cubit<HomePageState> {
     emit(HomePageLoadingState());
 
     try {
-      List query = await sqlDB.query();
+      List query = await sqlDB.query('songs');
 
 
       for (int i = 0; i < query.length; i++) {
@@ -29,6 +29,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         Uint8List? unit = metaData.albumArt;
 
         songs.add(Song(
+          id: query[i]['id'],
           artist: query[i]['artist'],
           data: query[i]['data'],
           title: query[i]['title'],

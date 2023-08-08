@@ -50,7 +50,11 @@ class SqlDB {
     return response;
   }
 
-
+  delete(int id) async {
+    int response =
+    await _db!.delete('favorite', where: 'id = ? ', whereArgs: [id]);
+    return response;
+  }
 
   deleteAll() async {
     int response = await _db!.delete('songs');

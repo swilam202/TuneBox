@@ -24,24 +24,28 @@ class SongDetailsControlRow extends StatefulWidget {
 class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
   //bool isPlaying = false;
 SqlDB sqlDB = SqlDB();
-late bool isLiked;
+  bool isLiked = false;
 
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
-isLikedFunc();
+
+    isLikedFunc();
   }
 
   isLikedFunc()async{
   List data = await sqlDB.query('songs');
+  print('data query $data ***************////////////////////----------------------------');
+  print('song id ${widget.song.id} ***************////////////////////----------------------------');
   for(int i = 0;i < data.length; i++){
     if(data[i]['id'] == widget.song.id){
-      isLiked = true;
+      setState(() {
+        isLiked = true;
+      });
+      break;
     }
-    else{
-      isLiked = false;
-    }
+
   }
   }
 
@@ -56,13 +60,22 @@ isLikedFunc();
       children: [
         IconButton(
           onPressed: () async{
-           await sqlDB.insert({
+          if(isLiked == false){
+            await sqlDB.insert({
               'id': songDetailsCubit.songs[songDetailsCubit.index].id!,
-             'i': widget.index,
+              'i': widget.index,
             }, 'favorite');
-           setState(() {
-             isLiked = !isLiked;
-           });
+            setState(() {
+              isLiked = !isLiked;
+            });
+          }
+          else{
+            await sqlDB.delete(widget.song.id!);
+            setState(() {
+              isLiked = !isLiked;
+            });
+          }
+
            print('pressed ----------------------------------');
           },
           icon:  Icon(

@@ -12,12 +12,20 @@ class FavoritePageCubit extends Cubit<FavoritePageState>{
   SqlDB sqlDB = SqlDB();
   getSongs()async{
     emit(FavoritePageLoadingState());
-    List<Song> data = [];
-    List items = await sqlDB.query('favorite');
+    List<int> data = [];
+    List query = await sqlDB.query('favorite');
+    print('favorite: $query ++++++++++++*************-----------------');
     try{
       List songs = await  sqlDB.query('songs');
-      for(int i = 0;i< items.length;i++){
-        data.add(songs.firstWhere((element)=> element['id'] == items[i]['id']));
+      for(int i = 0;i< query.length;i++){
+
+        for(int j = 0;j<songs.length;j++){
+          if(query[i]['id'] == songs[j]['id']){
+            data.add(query[i]['id']);
+            break;
+          }
+        }
+
       }
 
       print('data: $data ////////////////////////////////////////');

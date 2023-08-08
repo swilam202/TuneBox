@@ -21,7 +21,7 @@ class SongDetailsControlRow extends StatefulWidget {
 
 class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
   //bool isPlaying = false;
-
+SqlDB sqlDB = SqlDB();
   @override
   Widget build(BuildContext context) {
     final SongDetailsCubit songDetailsCubit = BlocProvider.of<SongDetailsCubit>(context);
@@ -33,9 +33,10 @@ class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
       children: [
         IconButton(
           onPressed: () async{
-           await SqlDB().insert({
+           await sqlDB.insert({
               'id': songDetailsCubit.songs[songDetailsCubit.index].id!
             }, 'favorite');
+           print('pressed ----------------------------------');
           },
           icon: const Icon(
             Icons.favorite_border,

@@ -13,7 +13,7 @@ class FavoritePageInitialState extends FavoritePageState {
 class FavoritePageLoadingState extends FavoritePageState {}
 
 class FavoritePageSuccessState extends FavoritePageState {
-  List<Song> songs;
+  List<int> songs;
   FavoritePageSuccessState({required this.songs});
 
 }

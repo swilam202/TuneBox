@@ -33,7 +33,7 @@ class _FavoritePageBodyState extends State<FavoritePageBody> {
               itemCount: 5,
               itemBuilder: (context,index){
 
-                return FavoriteItem(id: state.songs[index].id!);
+                return FavoriteItem(id: state.songs[index]);
               },
             );
           }

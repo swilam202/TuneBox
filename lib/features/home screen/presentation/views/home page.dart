@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../favorite screen/presentation/manager/favorite song cubit.dart';
 import '../../../search screen/presentation/views/search page.dart';
+import '../manager/home page cubit.dart';
 import 'widgets/home page body.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: ()async{
-           await BlocProvider.of<FavoritePageCubit>(context).getSongs();
+           await BlocProvider.of<FavoritePageCubit>(context).getSongs(songs: BlocProvider.of<HomePageCubit>(context).songs);
           },
           icon: const Icon(Icons.delete),
         ),
@@ -37,6 +38,14 @@ class HomePage extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FavoritePage(),),);
             },
             icon: const Icon(Icons.favorite),
+          ),
+
+          IconButton(
+            onPressed: ()async{
+              await SqlDB().deleteDb();
+              await SqlDB().initDatabase();
+            },
+            icon: const Icon(Icons.add),
           ),
         ],
         centerTitle: true,

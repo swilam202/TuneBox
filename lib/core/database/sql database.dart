@@ -32,7 +32,8 @@ class SqlDB {
     ''');
     batch.execute('''
     CREATE TABLE favorite (
-    id INTEGER
+    id INTEGER NOT NULL,
+    i INTEGER NOT NULL
     )
     ''');
       print('init++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');

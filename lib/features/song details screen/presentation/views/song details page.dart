@@ -38,7 +38,7 @@ class _SongDetailsPageState extends State<SongDetailsPage> {
       body: BlocBuilder<SongDetailsCubit,SongDetailsState>(
         builder: (context,state){
           if(state is SongDetailsSuccessState){
-           return SongDetailsBody(song: state.song,);
+           return SongDetailsBody(song: state.song,index: widget.index,);
           }
           else if(state is SongDetailsFailureState){
             return Center(child: Text(state.errorMessage),);

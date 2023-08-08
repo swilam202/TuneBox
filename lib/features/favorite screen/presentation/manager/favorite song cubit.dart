@@ -10,18 +10,20 @@ class FavoritePageCubit extends Cubit<FavoritePageState>{
   FavoritePageCubit():super(FavoritePageInitialState());
 
   SqlDB sqlDB = SqlDB();
-  getSongs()async{
+  getSongs({required List<Song> songs})async{
     emit(FavoritePageLoadingState());
-    List<int> data = [];
+    List<Song> data = [];
+    List<int> indexes = [];
     List query = await sqlDB.query('favorite');
     print('favorite: $query ++++++++++++*************-----------------');
     try{
-      List songs = await  sqlDB.query('songs');
+
       for(int i = 0;i< query.length;i++){
 
         for(int j = 0;j<songs.length;j++){
-          if(query[i]['id'] == songs[j]['id']){
-            data.add(query[i]['id']);
+          if(query[i]['id'] == songs[j].id){
+            indexes.add(query[i]['i']);
+            data.add(songs[j]);
             break;
           }
         }
@@ -29,7 +31,7 @@ class FavoritePageCubit extends Cubit<FavoritePageState>{
       }
 
       print('data: $data ////////////////////////////////////////');
-      emit(FavoritePageSuccessState(songs: data));
+      emit(FavoritePageSuccessState(songs: data,indexes: indexes));
     }catch(e){
       emit(FavoritePageFailureState(errorMessage: e.toString()));
     }

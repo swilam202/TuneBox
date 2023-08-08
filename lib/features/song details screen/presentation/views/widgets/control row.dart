@@ -12,8 +12,10 @@ import '../../../../home screen/data/song model.dart';
 
 
 class SongDetailsControlRow extends StatefulWidget {
-  SongDetailsControlRow({super.key, required this.song,});
+  SongDetailsControlRow({super.key, required this.song,required this.index});
   final Song song;
+  final int index;
+
 
   @override
   State<SongDetailsControlRow> createState() => _SongDetailsControlRowState();
@@ -22,6 +24,27 @@ class SongDetailsControlRow extends StatefulWidget {
 class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
   //bool isPlaying = false;
 SqlDB sqlDB = SqlDB();
+late bool isLiked;
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+isLikedFunc();
+  }
+
+  isLikedFunc()async{
+  List data = await sqlDB.query('songs');
+  for(int i = 0;i < data.length; i++){
+    if(data[i]['id'] == widget.song.id){
+      isLiked = true;
+    }
+    else{
+      isLiked = false;
+    }
+  }
+  }
+
   @override
   Widget build(BuildContext context) {
     final SongDetailsCubit songDetailsCubit = BlocProvider.of<SongDetailsCubit>(context);
@@ -34,12 +57,16 @@ SqlDB sqlDB = SqlDB();
         IconButton(
           onPressed: () async{
            await sqlDB.insert({
-              'id': songDetailsCubit.songs[songDetailsCubit.index].id!
+              'id': songDetailsCubit.songs[songDetailsCubit.index].id!,
+             'i': widget.index,
             }, 'favorite');
+           setState(() {
+             isLiked = !isLiked;
+           });
            print('pressed ----------------------------------');
           },
-          icon: const Icon(
-            Icons.favorite_border,
+          icon:  Icon(
+            isLiked == true? Icons.favorite:Icons.favorite_border,
             size: 20,
           ),
         ),

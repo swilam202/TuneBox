@@ -10,12 +10,13 @@ class SongDetailsController extends GetxController{
   RxBool isLiked = false.obs;
     Rx<AudioPlayer> player = AudioPlayer().obs;
       RxBool isPlaying = false.obs;
-        RxInt autoMode = 0.obs;
+        RxInt autoMode = 1.obs;
+          RxDouble sliderVal = 0.0.obs;
 
     chekIfFavorite({required int songId})async{
   List data = await sqlDB.query('favorite');
   print('data query $data ***************////////////////////----------------------------');
-  print('song id $songId ***************////////////////////----------------------------');
+  print('song id $songId  ***************////////////////////----------------------------');
   for(int i = 0;i < data.length; i++){
     if(data[i]['id'] == songId){
         isLiked.value = true;

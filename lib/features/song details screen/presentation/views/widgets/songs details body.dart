@@ -1,13 +1,14 @@
 //import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/widgets/control%20row.dart';
 
 import '../../../../../core/widgets/get image.dart';
 import '../../../../home screen/data/song model.dart';
 import '../../../../home screen/presentation/manager/home page cubit.dart';
-
+import 'package:get/get.dart';
 
 
 class SongDetailsBody extends StatefulWidget {
@@ -22,7 +23,7 @@ class SongDetailsBody extends StatefulWidget {
 
 class _SongDetailsBodyState extends State<SongDetailsBody> {
  // final player = AudioPlayer();
-  double sliderVal = 0;
+
 //late Song song;
   @override
   void initState() {
@@ -33,8 +34,8 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
 
   @override
   Widget build(BuildContext context) {
-
-    return SafeArea(
+SongDetailsController controller = Get.put(SongDetailsController());
+    return Obx(() => SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Column(
@@ -93,20 +94,33 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 30),
-            Slider(value: sliderVal, onChanged: (val) async{
-print('val: ${val.floor()} ---------------**************************//////////////////////');
-             // await BlocProvider.of<SongDetailsCubit>(context).player.seek(Duration(milliseconds: val.floor(),),);
-              setState(() {
-              sliderVal = val;
-              });
-            },min: 0,max: widget.song.duration!.toDouble(),),
-             Padding(
+         
+              Slider(
+                value: controller.sliderVal.value, 
+              onChanged: (val) async{
+
+                
+               // controller.sliderVal.value = val;
+                //    print('val int : ${val.toInt()} ---------------------************');
+                //     print('duration : ${widget.song.duration!} ---------------------************');
+
+              await controller.player.value.seek(Duration(milliseconds: val.toInt(),),);
+              controller.sliderVal.value = val;
+
+
+
+            },
+            min: 0,
+            max: widget.song.duration!.toDouble(),
+            ),
+         
+              Padding(
               padding: EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(sliderVal.toString()),
-                  Text('${ widget.song.duration ?? 0}'),
+                  Text(controller.sliderVal.value.toInt().toString()),
+                  Text('${ widget.song.duration?.toInt() ?? 0}'),
                 ],
               ),
             ),
@@ -117,8 +131,9 @@ print('val: ${val.floor()} ---------------**************************////////////
           ],
         ),
       ),
-    );
-  }
+    )
+ );
+     }
 
 
 }

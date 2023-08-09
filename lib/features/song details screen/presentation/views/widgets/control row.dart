@@ -92,6 +92,7 @@ SqlDB sqlDB = SqlDB();
 
               await controller.player.value.pause();
               controller.isPlaying.value = false;
+              controller.sliderVal.value = 0.0;
              if(controller.autoMode.value == 1){
                songDetailsCubit.index++;
 

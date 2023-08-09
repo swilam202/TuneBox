@@ -11,12 +11,12 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
   SongDetailsCubit():super(SongDetailsInitialState());
 
   List<Song> songs = [];
-  AudioPlayer player = AudioPlayer();
+
   int index = 0;
-  bool isPlaying = false;
+
   bool isFavorite = false;
   //0 is repeat 1 is next 2 is random
-  int autoMode = 0;
+
   void getAllSongs(List<Song> list){
     songs = list;
   }
@@ -35,11 +35,8 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
 
   }
 
-    void pausePlayer ()async{
-    await player.pause();
-    isPlaying = false;
-    }
 
+/*
   Icon getPlayICon(){
     if(isPlaying){
       return Icon(Icons.pause ,size: 40,);
@@ -47,28 +44,9 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
    else {
       return Icon(Icons.play_arrow,size: 40,);
     }
-  }
+  }*/
 
-  playSong()async{
-    if(isPlaying){
 
-      await player.pause();
 
-    }
-    else{
-     await player.play();
-
-    }
-
-  }
-
-  switchMode(){
-    if(autoMode > 2){
-      autoMode = 0;
-    }
-    else{
-      autoMode++;
-    }
-  }
 
 }

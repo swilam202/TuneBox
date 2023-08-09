@@ -30,7 +30,7 @@ class HomePageBody extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: state.songs.length,
                   itemBuilder: (context, index) {
-                    BlocProvider.of<SongDetailsCubit>(context).pausePlayer();
+                   // BlocProvider.of<SongDetailsCubit>(context).pausePlayer();
 
                     BlocProvider.of<SongDetailsCubit>(context).getAllSongs(state.songs);
                     return ListViewItem(index: index);

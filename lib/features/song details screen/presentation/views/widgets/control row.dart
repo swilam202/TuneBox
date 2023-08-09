@@ -1,10 +1,11 @@
 //import 'package:audioplayers/audioplayers.dart';
 import 'dart:math';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:musicapp/core/database/sql%20database.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 
 import '../../../../home screen/data/song model.dart';
@@ -23,70 +24,54 @@ class SongDetailsControlRow extends StatefulWidget {
 
 class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
   //bool isPlaying = false;
+  SongDetailsController controller = Get.put(SongDetailsController());
 SqlDB sqlDB = SqlDB();
-  bool isLiked = false;
+
 
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    isLikedFunc();
+    controller.chekIfFavorite(songId: widget.song.id!);
   }
 
-  isLikedFunc()async{
-  List data = await sqlDB.query('favorite');
-  print('data query $data ***************////////////////////----------------------------');
-  print('song id ${widget.song.id} ***************////////////////////----------------------------');
-  for(int i = 0;i < data.length; i++){
-    if(data[i]['id'] == widget.song.id){
-      setState(() {
-        isLiked = true;
-      });
-      break;
-    }
 
-  }
-  }
 
   @override
   Widget build(BuildContext context) {
     final SongDetailsCubit songDetailsCubit = BlocProvider.of<SongDetailsCubit>(context);
    // final player = BlocProvider.of<SongDetailsCubit>(context).player;
-    final dur = songDetailsCubit.player.setFilePath(widget.song.data!);
+    final dur = controller.player.value.setFilePath(widget.song.data!);
 
-    return Row(
+    return Obx(() => Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
           onPressed: () async{
-          if(isLiked == false){
+          if(controller.isLiked == false){
             await sqlDB.insert({
               'id': songDetailsCubit.songs[songDetailsCubit.index].id!,
               'i': widget.index,
             }, 'favorite');
-            setState(() {
-              isLiked = !isLiked;
-            });
+            controller.isLiked.value = !(controller.isLiked.value);
           }
           else{
             await sqlDB.delete(widget.song.id!);
-            setState(() {
-              isLiked = !isLiked;
-            });
+            controller.isLiked.value = !(controller.isLiked.value);
           }
 
            print('pressed ----------------------------------');
           },
           icon:  Icon(
-            isLiked == true? Icons.favorite:Icons.favorite_border,
+            controller.isLiked.value == true? Icons.favorite:Icons.favorite_border,
             size: 20,
           ),
         ),
         IconButton(
           onPressed: () async {
-            await songDetailsCubit.player.pause();
-            songDetailsCubit.isPlaying = false;
+            await controller.player.value.pause();
+            controller.isPlaying.value = false;
             songDetailsCubit.index--;
             songDetailsCubit.loadSong();
           },
@@ -97,23 +82,21 @@ SqlDB sqlDB = SqlDB();
         ),
         IconButton(
           onPressed: () async {
-            await songDetailsCubit.playSong();
-setState(() {
-  songDetailsCubit.isPlaying = !songDetailsCubit.isPlaying;
-});
+            await controller.playSong();
+
           },
-          icon: songDetailsCubit.isPlaying? Icon(Icons.pause,size: 40,):Icon(Icons.play_arrow,size: 40,),
+          icon: controller.isPlaying.value? Icon(Icons.pause,size: 40,):Icon(Icons.play_arrow,size: 40,),
         ),
         IconButton(
             onPressed: () async {
 
-              await songDetailsCubit.player.pause();
-              songDetailsCubit.isPlaying = false;
-             if(songDetailsCubit.autoMode == 1){
+              await controller.player.value.pause();
+              controller.isPlaying.value = false;
+             if(controller.autoMode.value == 1){
                songDetailsCubit.index++;
 
              }
-             else if(songDetailsCubit.autoMode == 2){
+             else if(controller.autoMode.value == 2){
                Random r = Random();
                songDetailsCubit.index = r.nextInt( songDetailsCubit.songs.length) -1;
 
@@ -129,18 +112,19 @@ setState(() {
             )),
         IconButton(
           onPressed: () async{
-            songDetailsCubit.switchMode();
+            controller.switchMode();
            // songDetailsCubit.player.seekToNext()
             setState(() {
             });
           },
           icon:  Icon(
-            songDetailsCubit.autoMode == 0? Icons.repeat_one:songDetailsCubit.autoMode == 1?Icons.repeat:Icons.shuffle,
+            controller.autoMode.value == 0? Icons.repeat_one:controller.autoMode.value == 1?Icons.repeat:Icons.shuffle,
             size: 20,
           ),
         ),
       ],
-    );
-  }
+    )
+ );
+     }
 
 }

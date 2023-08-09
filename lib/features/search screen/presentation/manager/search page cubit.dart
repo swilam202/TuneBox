@@ -1,12 +1,17 @@
 
 
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:musicapp/core/database/sql%20database.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
+import '../../../home screen/data/song model.dart';
 import 'search page state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState>{
@@ -15,12 +20,13 @@ class SearchPageCubit extends Cubit<SearchPageState>{
   SqlDB sqlDB = SqlDB();
   loadData()async{
     emit(SearchPageLoadingState());
-    sqlDB.deleteAll();
+    await sqlDB.deleteAll();
     try{
+      await sqlDB.deleteAll();
         late List<SongModel> mp3songs;
 
-    Permission.audio.request();
-    Permission.storage.request();
+   // Permission.audio.request();
+   // Permission.storage.request();
     print('recaling.........................');
     mp3songs = await OnAudioQuery.platform.querySongs();
 
@@ -34,6 +40,16 @@ class SearchPageCubit extends Cubit<SearchPageState>{
       },'songs');
  
     }
+
+
+
+ 
+
+
+
+
+
+
     print('success ++++++++++++++++++++++++-------------------------------');
     emit(SearchPageSuccessState(length: mp3songs.length));
     }

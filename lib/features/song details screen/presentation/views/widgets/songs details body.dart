@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/widgets/control%20row.dart';
 
+import '../../../../../core/widgets/get image.dart';
 import '../../../../home screen/data/song model.dart';
 import '../../../../home screen/presentation/manager/home page cubit.dart';
 
@@ -63,7 +64,7 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     image:  DecorationImage(
-                      image: getImage(),
+                      image: getImage(widget.song.image),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -119,14 +120,5 @@ print('val: ${val.floor()} ---------------**************************////////////
     );
   }
 
- ImageProvider getImage(){
-    if(widget.song.image != null){
-      return MemoryImage(
-          widget.song.image!
-      );
-    }
-    else{
-      return const AssetImage('assets/images/music.png');
-    }
-  }
+
 }

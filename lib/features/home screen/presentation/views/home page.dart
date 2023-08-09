@@ -12,7 +12,15 @@ import '../../../search screen/presentation/views/search page.dart';
 import '../manager/home page cubit.dart';
 import 'widgets/home page body.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+
+
   @override
   Widget build(BuildContext context) {
 

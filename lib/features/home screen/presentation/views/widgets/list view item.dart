@@ -12,6 +12,7 @@ import 'package:musicapp/features/song%20details%20screen/presentation/manager/s
 import 'package:on_audio_query/on_audio_query.dart';
 
 
+import '../../../../../core/widgets/get image.dart';
 import '../../../../song details screen/presentation/views/song details page.dart';
 import '../../../data/song model.dart';
 
@@ -50,7 +51,7 @@ final int index;
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.red,
                 image:  DecorationImage(
-                  image: getImage(song),
+                  image: getImage(song.image),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -96,13 +97,3 @@ final int index;
 }
 
 
-ImageProvider getImage(Song song){
-  if(song.image != null){
-    return MemoryImage(
-        song.image!
-    );
-  }
-  else{
-    return AssetImage('assets/images/music.png');
-  }
-}

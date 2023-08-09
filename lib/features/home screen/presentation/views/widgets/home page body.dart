@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 
 
@@ -30,7 +31,7 @@ class HomePageBody extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: state.songs.length,
                   itemBuilder: (context, index) {
-                   // BlocProvider.of<SongDetailsCubit>(context).pausePlayer();
+                   SongDetailsController().pausePlayer();
 
                     BlocProvider.of<SongDetailsCubit>(context).getAllSongs(state.songs);
                     return ListViewItem(index: index);

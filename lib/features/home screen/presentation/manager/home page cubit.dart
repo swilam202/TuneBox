@@ -25,6 +25,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
 
       for (int i = 0; i < query.length; i++) {
+       
         Metadata metaData = await MetadataRetriever.fromFile(File(query[i]['data']));
         Uint8List? unit = metaData.albumArt;
 

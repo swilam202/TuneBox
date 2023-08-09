@@ -38,6 +38,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   just_audio: ^0.9.34
   persistent_bottom_nav_bar: ^5.0.2
+
   flutter:
     sdk: flutter
 

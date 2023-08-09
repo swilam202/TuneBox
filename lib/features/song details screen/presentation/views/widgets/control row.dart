@@ -35,7 +35,7 @@ SqlDB sqlDB = SqlDB();
   }
 
   isLikedFunc()async{
-  List data = await sqlDB.query('songs');
+  List data = await sqlDB.query('favorite');
   print('data query $data ***************////////////////////----------------------------');
   print('song id ${widget.song.id} ***************////////////////////----------------------------');
   for(int i = 0;i < data.length; i++){

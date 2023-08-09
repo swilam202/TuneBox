@@ -93,8 +93,12 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
             ),
             const SizedBox(height: 30),
             Slider(value: sliderVal, onChanged: (val) async{
-              await BlocProvider.of<SongDetailsCubit>(context).player.seek(Duration(milliseconds: 2500));
-            }),
+
+              await BlocProvider.of<SongDetailsCubit>(context).player.seek(Duration(milliseconds: val.floor(),),);
+              setState(() {
+              sliderVal = val;
+              });
+            },min: 0,max: widget.song.duration!.toDouble(),),
              Padding(
               padding: EdgeInsets.all(8),
               child: Row(

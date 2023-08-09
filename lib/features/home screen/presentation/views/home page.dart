@@ -58,7 +58,10 @@ class _HomePageState extends State<HomePage> {
         ],
         centerTitle: true,
       ),
-      body: HomePageBody(),
+      body: RefreshIndicator(
+        onRefresh: () async=>await BlocProvider.of<HomePageCubit>(context).loadData(),
+        child: HomePageBody(),
+      ),
     );
   }
 }

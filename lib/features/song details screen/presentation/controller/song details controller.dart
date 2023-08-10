@@ -14,6 +14,7 @@ class SongDetailsController extends GetxController{
           RxDouble sliderVal = 0.0.obs;
 
     chekIfFavorite({required int songId})async{
+      isLiked.value = false;
   List data = await sqlDB.query('favorite');
   print('data query $data ***************////////////////////----------------------------');
   print('song id $songId  ***************////////////////////----------------------------');

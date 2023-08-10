@@ -23,18 +23,19 @@ class SongDetailsBody extends StatefulWidget {
 
 class _SongDetailsBodyState extends State<SongDetailsBody> {
  // final player = AudioPlayer();
-
+SongDetailsController controller = Get.put(SongDetailsController());
 //late Song song;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    controller.chekIfFavorite(songId: widget.song.id!);
  //  song =  BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.index);
   }
 
   @override
   Widget build(BuildContext context) {
-SongDetailsController controller = Get.put(SongDetailsController());
+
     return Obx(() => SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -105,7 +106,7 @@ SongDetailsController controller = Get.put(SongDetailsController());
                 //     print('duration : ${widget.song.duration!} ---------------------************');
 
               await controller.player.value.seek(Duration(milliseconds: val.toInt(),),);
-              controller.sliderVal.value = val;
+             // controller.sliderVal.value = val;
 
 
 

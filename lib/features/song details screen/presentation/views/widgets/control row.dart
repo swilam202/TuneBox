@@ -33,7 +33,7 @@ SqlDB sqlDB = SqlDB();
     // TODO: implement initState
     super.initState();
 
-    controller.chekIfFavorite(songId: widget.song.id!);
+    //controller.chekIfFavorite(songId: widget.song.id!);
   }
 
 
@@ -43,7 +43,7 @@ SqlDB sqlDB = SqlDB();
     final SongDetailsCubit songDetailsCubit = BlocProvider.of<SongDetailsCubit>(context);
    // final player = BlocProvider.of<SongDetailsCubit>(context).player;
     final dur = controller.player.value.setFilePath(widget.song.data!);
-
+controller.chekIfFavorite(songId: widget.song.id!);
     return Obx(() => Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

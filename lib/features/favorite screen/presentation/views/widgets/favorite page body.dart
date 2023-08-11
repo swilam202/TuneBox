@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musicapp/core/database/sql%20database.dart';
+import 'package:musicapp/core/widgets/states%20handeling/errror%20state.dart';
+import 'package:musicapp/core/widgets/states%20handeling/inital%20state.dart';
+import 'package:musicapp/core/widgets/states%20handeling/loading%20state.dart';
 import 'package:musicapp/features/favorite%20screen/presentation/manager/favorite%20song%20cubit.dart';
 import 'package:musicapp/features/favorite%20screen/presentation/manager/favorite%20songs%20state.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
-import 'package:musicapp/features/home%20screen/presentation/views/widgets/list%20view%20item.dart';
+import 'package:musicapp/core/widgets/list%20view%20item.dart';
 
 import 'favorite item.dart';
 
@@ -39,8 +42,14 @@ class _FavoritePageBodyState extends State<FavoritePageBody> {
               },
             );
           }
-          else {
-            return Center(child: CircularProgressIndicator(),);
+          else if(state is FavoritePageFailureState) {
+            return ErrorState(errorMessage: state.errorMessage);
+          }
+          else if(state is FavoritePageInitialState) {
+            return  InitialState(message: state.message,);
+          }
+          else{
+            return const LoadignState();
           }
         },
       ),

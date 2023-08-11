@@ -12,9 +12,9 @@ import 'package:musicapp/features/song%20details%20screen/presentation/manager/s
 import 'package:on_audio_query/on_audio_query.dart';
 
 
-import '../../../../../core/widgets/get image.dart';
-import '../../../../song details screen/presentation/views/song details page.dart';
-import '../../../data/song model.dart';
+import 'get image.dart';
+import '../../features/song details screen/presentation/views/song details page.dart';
+import '../../features/home screen/data/song model.dart';
 
 
 

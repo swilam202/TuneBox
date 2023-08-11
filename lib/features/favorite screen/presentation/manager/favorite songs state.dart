@@ -7,7 +7,8 @@ import '../../../home screen/data/song model.dart';
 abstract class FavoritePageState {}
 
 class FavoritePageInitialState extends FavoritePageState {
-
+ String message;
+ FavoritePageInitialState({required this.message});
 }
 
 class FavoritePageLoadingState extends FavoritePageState {}

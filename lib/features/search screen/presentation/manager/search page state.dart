@@ -1,7 +1,8 @@
 abstract class SearchPageState {}
 
 class SearchPageInitialState extends SearchPageState {
-
+String message;
+SearchPageInitialState({required this.message});
 }
 
 class SearchPageLoadingState extends SearchPageState {}

@@ -8,7 +8,7 @@ class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key,required});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: FavoritePageBody(),
     );
   }

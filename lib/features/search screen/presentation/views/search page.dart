@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:musicapp/core/widgets/states%20handeling/loading%20state.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20state.dart';
 import 'package:musicapp/features/search%20screen/presentation/manager/search%20page%20cubit.dart';
 import 'package:musicapp/features/search%20screen/presentation/views/widgets/search%20fail.dart';
@@ -35,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
           } else if (state is SearchPageInitialState) {
             return const SearchInitial();
           } else {
-            return const SearchLoading();
+            return const LoadignState();
           }
         },
       ),

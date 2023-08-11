@@ -7,7 +7,7 @@ import '../../../../core/database/sql database.dart';
 import '../../../home screen/data/song model.dart';
 
 class FavoritePageCubit extends Cubit<FavoritePageState>{
-  FavoritePageCubit():super(FavoritePageInitialState());
+  FavoritePageCubit():super(FavoritePageInitialState(message: 'The favorite playlist is empty try add a song!'));
 
   SqlDB sqlDB = SqlDB();
   getSongs({required List<Song> songs})async{

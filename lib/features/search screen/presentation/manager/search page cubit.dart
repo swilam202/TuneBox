@@ -15,7 +15,7 @@ import '../../../home screen/data/song model.dart';
 import 'search page state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState>{
-  SearchPageCubit():super(SearchPageInitialState());
+  SearchPageCubit():super(SearchPageInitialState(message: 'Try search for songs on your device'));
 
   SqlDB sqlDB = SqlDB();
   loadData()async{
@@ -59,8 +59,8 @@ class SearchPageCubit extends Cubit<SearchPageState>{
 
   }
 
-  void getBack(){
+ /* void getBack(){
     emit(SearchPageInitialState());
   }
-
+*/
 }

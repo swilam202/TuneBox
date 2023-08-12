@@ -8,6 +8,7 @@ import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:musicapp/features/favorite%20screen/presentation/manager/favorite%20song%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
+import 'package:musicapp/slider%20cubit.dart';
 //import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>SearchPageCubit()),
         BlocProvider(create: (context)=>SongDetailsCubit()),
         BlocProvider(create: (context)=>FavoritePageCubit()),
+        BlocProvider(create: (context)=>SliderCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

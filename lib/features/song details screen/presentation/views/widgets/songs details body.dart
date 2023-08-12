@@ -1,9 +1,11 @@
 //import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:musicapp/core/widgets/states%20handeling/loading%20state.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/views/widgets/control%20row.dart';
+import 'package:musicapp/slider%20cubit.dart';
 
 import '../../../../../core/widgets/get image.dart';
 import '../../../../home screen/data/song model.dart';
@@ -31,11 +33,12 @@ SongDetailsController controller = Get.put(SongDetailsController());
     super.initState();
     controller.chekIfFavorite(songId: widget.song.id!);
  //  song =  BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.index);
+ BlocProvider.of<SliderCubit>(context).prog(0.0);
   }
 
   @override
   Widget build(BuildContext context) {
-
+double v = 0.0;
     return Obx(() => SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -60,7 +63,7 @@ SongDetailsController controller = Get.put(SongDetailsController());
             Expanded(
               //height: MediaQuery.of(context).size.height *0.5,
               child: AspectRatio(
-                aspectRatio: 1.5/1,
+                aspectRatio: 2/1,
                 child: Container(
 
                   decoration: BoxDecoration(
@@ -96,23 +99,23 @@ SongDetailsController controller = Get.put(SongDetailsController());
             ),
             const SizedBox(height: 30),
          
-              Slider(
-                value: controller.sliderVal.value, 
-              onChanged: (val) async{
-
-                
-               // controller.sliderVal.value = val;
-                //    print('val int : ${val.toInt()} ---------------------************');
-                //     print('duration : ${widget.song.duration!} ---------------------************');
-
-              await controller.player.value.seek(Duration(milliseconds: val.toInt(),),);
-             // controller.sliderVal.value = val;
-
-
-
-            },
-            min: 0,
-            max: widget.song.duration!.toDouble(),
+            BlocBuilder<SliderCubit,SliderState>(
+              builder: (context, state) {
+                if(state is SuccessSliderState){
+                return    Slider(
+                    value: state.progress, 
+                    onChanged: (val)async{
+                    await controller.player.value.seek(Duration(milliseconds: val.toInt(),),);
+                    BlocProvider.of<SliderCubit>(context).prog(val);
+                      },
+                  min: 0,
+                  max: widget.song.duration!.toDouble(),
+                           );
+                }
+                else{
+                  return LoadignState();
+                }
+              },
             ),
          
               Padding(

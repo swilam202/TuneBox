@@ -17,10 +17,13 @@ class ListViewItem extends StatelessWidget {
     Song song = BlocProvider.of<SongDetailsCubit>(context).songs[index];
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
+        Navigator.of(context).push(
+          MaterialPageRoute(
             builder: (context) => SongDetailsPage(
-                  index: index,
-                )));
+              index: index,
+            ),
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
@@ -40,7 +43,7 @@ class ListViewItem extends StatelessWidget {
               width: 70,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Colors.red,
+                color: Colors.transparent,
                 image: DecorationImage(
                   image: getImage(song.image),
                   fit: BoxFit.fill,

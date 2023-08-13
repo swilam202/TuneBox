@@ -46,7 +46,9 @@ class HomePage extends StatelessWidget {
       body: RefreshIndicator(
         onRefresh: () async =>
             await BlocProvider.of<HomePageCubit>(context).loadData(),
-        child: HomePageBody(),
+        color: Colors.green,
+        backgroundColor: Colors.green[400],
+        child: const HomePageBody(),
       ),
     );
   }

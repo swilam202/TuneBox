@@ -29,7 +29,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   permission_handler: ^10.4.3
-  path_provider: ^2.0.15
   file_picker: ^5.3.3
   on_audio_query: ^2.9.0
   flutter_media_metadata: ^1.0.0+1
@@ -37,11 +36,28 @@ dependencies:
   flutter_bloc: ^8.1.3
   loading_animation_widget: ^1.2.0+4
   just_audio: ^0.9.34
-  persistent_bottom_nav_bar: ^5.0.2
   get: ^4.6.5
+  flutter_launcher_icons: "^0.13.1"
   flutter:
     sdk: flutter
 
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/music.png"
+  web:
+    generate: true
+    image_path: "assets/images/music.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/music.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/music.png"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -72,8 +88,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/music.png
-    - assets/images/testArtist.jpg
-    - assets/images/test2.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

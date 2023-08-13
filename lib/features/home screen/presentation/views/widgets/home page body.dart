@@ -30,16 +30,15 @@ class HomePageBody extends StatelessWidget {
 
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Expanded(
-                child: ListView.builder(
-                  itemCount: state.songs.length,
-                  itemBuilder: (context, index) {
-                   SongDetailsController().pausePlayer();
+              child: ListView.builder(
+                itemCount: state.songs.length,
+                itemBuilder: (context, index) {
+                 SongDetailsController().pausePlayer();
 
-                    BlocProvider.of<SongDetailsCubit>(context).getAllSongs(state.songs);
-                    return ListViewItem(index: index);
-                  },
-                ),
+                  BlocProvider.of<SongDetailsCubit>(context).getAllSongs(state.songs);
+                  return ListViewItem(index: index);
+                 //return Text(index.toString());
+                },
               ),
             );
           }

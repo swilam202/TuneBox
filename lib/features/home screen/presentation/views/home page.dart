@@ -27,34 +27,36 @@ class _HomePageState extends State<HomePage> {
     //Uint8List data = Uint8List.;
     return Scaffold(
       appBar: AppBar(
-        title: IconButton(
-          onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchPage(),),);
-          },
-          icon: const Icon(Icons.add),
-        ),
-        leading: IconButton(
-          onPressed: ()async{
-           await BlocProvider.of<FavoritePageCubit>(context).getSongs(songs: BlocProvider.of<HomePageCubit>(context).songs);
-          },
-          icon: const Icon(Icons.delete),
-        ),
-        actions: [
-          IconButton(
+        title:
+        IconButton(
             onPressed: ()async{
               await SqlDB().query('favorite');
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FavoritePage(),),);
             },
-            icon: const Icon(Icons.favorite),
-          ),
-
-          IconButton(
+            icon: const Icon(Icons.favorite,color: Colors.green,),
+          ), 
+       /* leading: IconButton(
+          onPressed: ()async{
+           await BlocProvider.of<FavoritePageCubit>(context).getSongs(songs: BlocProvider.of<HomePageCubit>(context).songs);
+          },
+          icon: const Icon(Icons.delete),
+        ),*/
+        actions: [
+          
+      IconButton(
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchPage(),),);
+          },
+          icon: const Icon(Icons.search),
+          color: Colors.green,
+        ),
+         /* IconButton(
             onPressed: ()async{
               await SqlDB().deleteDb();
               await SqlDB().initDatabase();
             },
             icon: const Icon(Icons.add),
-          ),
+          ),*/
         ],
         centerTitle: true,
       ),

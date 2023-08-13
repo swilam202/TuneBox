@@ -87,6 +87,7 @@ final int index;
             const Icon(
               Icons.play_arrow,
               size: 30,
+              color: Colors.green,
             ),
           ],
         ),

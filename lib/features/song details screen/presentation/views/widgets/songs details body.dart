@@ -32,14 +32,14 @@ SongDetailsController controller = Get.put(SongDetailsController());
     // TODO: implement initState
     super.initState();
     controller.chekIfFavorite(songId: widget.song.id!);
-  // song =  BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.index);
+ //  song =  BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.index);
  BlocProvider.of<SliderCubit>(context).prog(0.0);
   }
 
   @override
   Widget build(BuildContext context) {
 //double v = 0.0;
-    return Obx(() => SafeArea(
+    return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Column(
@@ -65,7 +65,7 @@ SongDetailsController controller = Get.put(SongDetailsController());
               child: AspectRatio(
                 aspectRatio: 2/1,
                 child: Container(
-
+                    margin: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     image:  DecorationImage(
@@ -105,11 +105,13 @@ SongDetailsController controller = Get.put(SongDetailsController());
                 return    Slider(
                     value: state.progress, 
                     onChanged: (val)async{
-                      await controller.player.value.seek(Duration(milliseconds: val.toInt()));
-                     BlocProvider.of<SliderCubit>(context).prog(val);
+                    await controller.player.value.seek(Duration(milliseconds: val.toInt(),),);
+                    BlocProvider.of<SliderCubit>(context).prog(val);
                       },
                   min: 0,
                   max: widget.song.duration!.toDouble(),
+                  activeColor: Colors.green,
+                  inactiveColor: Colors.green[300],
                            );
                 }
                 else{
@@ -117,18 +119,17 @@ SongDetailsController controller = Get.put(SongDetailsController());
                 }
               },
             ),
-         /*
-          Padding(
+         
+            /*  Padding(
               padding: EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(controller.player.value.position.inMilliseconds.toString()),
+                  Text(controller.sliderVal.value.toInt().toString()),
                   Text('${ widget.song.duration?.toInt() ?? 0}'),
                 ],
               ),
-            ),
-           */ 
+            ),*/
             const SizedBox(height: 30),
              SongDetailsControlRow(song:  widget.song,index: widget.index),
 
@@ -136,8 +137,7 @@ SongDetailsController controller = Get.put(SongDetailsController());
           ],
         ),
       ),
-    )
- );
+    );
      }
 
 

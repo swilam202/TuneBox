@@ -40,7 +40,7 @@ final int length;
           OutlinedButton(
             child: const Text('Search again'),
             onPressed: () =>
-                BlocProvider.of<SearchPageCubit>(context).loadData(),
+                BlocProvider.of<SearchPageCubit>(context).loadData(context),
           ),
         ],
       ),

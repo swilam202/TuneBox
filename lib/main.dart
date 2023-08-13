@@ -3,9 +3,10 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:get/get.dart';
 import 'package:musicapp/features/favorite%20screen/presentation/manager/favorite%20song%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
@@ -25,11 +26,23 @@ import 'features/splash screen/presentation/views/splash page.dart';
 
 //import 'fueatures/splash screen/presentation/views/splash screen.dart';
 
-void main() {
+void main()async {
+
   WidgetsFlutterBinding.ensureInitialized();
-  SqlDB sqlDB = SqlDB();
+ 
+  //PermissionStatus audioStatus = await Permission.audio.request();
+ // PermissionStatus storageStatus = await Permission.storage.request();
+  //if( storageStatus.isGranted){
+     SqlDB sqlDB = SqlDB();
   sqlDB.db;
   runApp(const MyApp());
+ // }
+ // else{
+ //    storageStatus = await Permission.storage.request();
+ //   SystemNavigator.pop();
+ // }
+
+ 
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +58,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>FavoritePageCubit()),
         BlocProvider(create: (context)=>SliderCubit()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromRGBO(46, 46, 46, 1.0),

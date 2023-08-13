@@ -12,7 +12,6 @@ class SongDetailsController extends GetxController{
       RxBool isPlaying = false.obs;
         RxInt autoMode = 1.obs;
           RxDouble sliderVal = 50000.0.obs;
-          double v = 0.0;
 
     chekIfFavorite({required int songId})async{
       isLiked.value = false;
@@ -28,11 +27,11 @@ class SongDetailsController extends GetxController{
   }
   }
 
-
+/*
 onCh(double val)async{
   await player.value.seek(Duration(milliseconds: val.toInt(),),);
   sliderVal.value = val;
-}
+}*/
 
 
 

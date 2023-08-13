@@ -14,7 +14,7 @@ class SearchInitial extends StatelessWidget {
       child: OutlinedButton(
         child: Text('There is no songs try now'),
         onPressed: ()async{
-         await  BlocProvider.of<SearchPageCubit>(context).loadData();
+         await  BlocProvider.of<SearchPageCubit>(context).loadData(context);
         // await  BlocProvider.of<HomePageCubit>(context).loadData();
         },
       ),

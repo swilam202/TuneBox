@@ -8,6 +8,7 @@ import 'package:musicapp/core/database/sql%20database.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 
+import '../../../../../slider cubit.dart';
 import '../../../../home screen/data/song model.dart';
 
 
@@ -66,6 +67,7 @@ controller.chekIfFavorite(songId: widget.song.id!);
           icon:  Icon(
             controller.isLiked.value == true? Icons.favorite:Icons.favorite_border,
             size: 20,
+            color: Colors.green,
           ),
         ),
         IconButton(
@@ -73,6 +75,7 @@ controller.chekIfFavorite(songId: widget.song.id!);
             await controller.player.value.pause();
             controller.isPlaying.value = false;
             songDetailsCubit.index--;
+            BlocProvider.of<SliderCubit>(context).prog(0.0);
             songDetailsCubit.loadSong();
           },
           icon: const Icon(
@@ -92,7 +95,8 @@ controller.chekIfFavorite(songId: widget.song.id!);
 
               await controller.player.value.pause();
               controller.isPlaying.value = false;
-              controller.sliderVal.value = 0.0;
+              //controller.sliderVal.value = 0.0;
+              BlocProvider.of<SliderCubit>(context).prog(0.0);
              if(controller.autoMode.value == 1){
                songDetailsCubit.index++;
 
@@ -121,6 +125,7 @@ controller.chekIfFavorite(songId: widget.song.id!);
           icon:  Icon(
             controller.autoMode.value == 0? Icons.repeat_one:controller.autoMode.value == 1?Icons.repeat:Icons.shuffle,
             size: 20,
+            color: Colors.green,
           ),
         ),
       ],

@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20state.dart';
-//import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
-//import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20state.dart';
 
 
 import '../../../home screen/data/song model.dart';

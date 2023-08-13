@@ -14,9 +14,9 @@ class FavoritePageInitialState extends FavoritePageState {
 class FavoritePageLoadingState extends FavoritePageState {}
 
 class FavoritePageSuccessState extends FavoritePageState {
-  List<Song> songs;
+
   List<int> indexes;
-  FavoritePageSuccessState({required this.songs,required this.indexes});
+  FavoritePageSuccessState({required this.indexes});
 
 }
 

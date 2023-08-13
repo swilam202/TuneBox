@@ -12,51 +12,39 @@ import '../../../search screen/presentation/views/search page.dart';
 import '../manager/home page cubit.dart';
 import 'widgets/home page body.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
 
-class _HomePageState extends State<HomePage> {
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
 
 
 
   @override
   Widget build(BuildContext context) {
 
-    //Uint8List data = Uint8List.;
+
     return Scaffold(
       appBar: AppBar(
         title:
         IconButton(
             onPressed: ()async{
               await SqlDB().query('favorite');
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FavoritePage(),),);
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const FavoritePage(),),);
             },
             icon: const Icon(Icons.favorite,color: Colors.green,),
           ), 
-       /* leading: IconButton(
-          onPressed: ()async{
-           await BlocProvider.of<FavoritePageCubit>(context).getSongs(songs: BlocProvider.of<HomePageCubit>(context).songs);
-          },
-          icon: const Icon(Icons.delete),
-        ),*/
+
         actions: [
           
       IconButton(
           onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchPage(),),);
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SearchPage(),),);
           },
           icon: const Icon(Icons.search),
           color: Colors.green,
         ),
-         /* IconButton(
-            onPressed: ()async{
-              await SqlDB().deleteDb();
-              await SqlDB().initDatabase();
-            },
-            icon: const Icon(Icons.add),
-          ),*/
+
         ],
         centerTitle: true,
       ),

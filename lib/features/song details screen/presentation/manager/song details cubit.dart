@@ -15,7 +15,7 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
   int index = 0;
 
   bool isFavorite = false;
-  //0 is repeat 1 is next 2 is random
+ 
 
   void getAllSongs(List<Song> list){
     songs = list;
@@ -30,21 +30,12 @@ class SongDetailsCubit extends Cubit<SongDetailsState>{
         index = 0;
       }
       emit(SongDetailsSuccessState(index: index, song: songs[index]));
-      //return songs[index];
+
 
 
   }
 
 
-/*
-  Icon getPlayICon(){
-    if(isPlaying){
-      return Icon(Icons.pause ,size: 40,);
-    }
-   else {
-      return Icon(Icons.play_arrow,size: 40,);
-    }
-  }*/
 
 
 

@@ -15,7 +15,6 @@ class FavoritePageCubit extends Cubit<FavoritePageState>{
     List<Song> data = [];
     List<int> indexes = [];
     List query = await sqlDB.query('favorite');
-    print('favorite: $query ++++++++++++*************-----------------');
     try{
 
       for(int i = 0;i< query.length;i++){
@@ -30,8 +29,8 @@ class FavoritePageCubit extends Cubit<FavoritePageState>{
 
       }
 
-      print('data: $data ////////////////////////////////////////');
-      emit(FavoritePageSuccessState(songs: data,indexes: indexes));
+
+      emit(FavoritePageSuccessState(indexes: indexes));
     }catch(e){
       emit(FavoritePageFailureState(errorMessage: e.toString()));
     }

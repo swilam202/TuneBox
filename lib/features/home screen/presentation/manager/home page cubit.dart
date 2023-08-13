@@ -41,7 +41,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         ));
 
       }
-      print('query $query');
+
       emit(HomePageSuccessState(songs: songs));
     } catch (e) {
       emit(HomePageFailureState(errorMessage: e.toString()));

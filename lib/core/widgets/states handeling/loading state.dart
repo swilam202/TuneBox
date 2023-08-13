@@ -9,7 +9,7 @@ class LoadignState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Center(
-      child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 80),
+      child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.green, size: 80,),
     );
   }
 }

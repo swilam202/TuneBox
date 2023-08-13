@@ -12,14 +12,11 @@ import 'package:musicapp/features/search%20screen/presentation/views/widgets/sea
 import '../../../home screen/presentation/manager/home page cubit.dart';
 import '../manager/search page state.dart';
 
-class SearchPage extends StatefulWidget {
+
+
+class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
-
-class _SearchPageState extends State<SearchPage> {
 
 
 

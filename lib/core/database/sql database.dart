@@ -36,7 +36,6 @@ class SqlDB {
     i INTEGER NOT NULL
     )
     ''');
-      print('init++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
     await batch.commit();
   }
 
@@ -61,10 +60,5 @@ class SqlDB {
     return response;
   }
 
-  deleteDb()async{
-    String dbpath = await getDatabasesPath();
-    String path = join(dbpath, 'tunebox.db');
-    deleteDatabase(path);
-    print('data base deleted -----------------------------------');
-  }
+
 }

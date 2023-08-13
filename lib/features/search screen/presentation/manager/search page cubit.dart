@@ -32,7 +32,6 @@ class SearchPageCubit extends Cubit<SearchPageState>{
   
   Permission.audio.request();
   
-  print('recaling.........................');
   mp3songs = await OnAudioQuery.platform.querySongs();
   
   mp3songs = mp3songs.where((element) => element.data.endsWith('.mp3')).toList();

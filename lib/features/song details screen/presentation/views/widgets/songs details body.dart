@@ -24,21 +24,21 @@ class SongDetailsBody extends StatefulWidget {
 }
 
 class _SongDetailsBodyState extends State<SongDetailsBody> {
- // final player = AudioPlayer();
+
 SongDetailsController controller = Get.put(SongDetailsController());
-//late Song song;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     controller.chekIfFavorite(songId: widget.song.id!);
- //  song =  BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.index);
+
  BlocProvider.of<SliderCubit>(context).prog(0.0);
   }
 
   @override
   Widget build(BuildContext context) {
-//double v = 0.0;
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -61,11 +61,11 @@ SongDetailsController controller = Get.put(SongDetailsController());
             ),
             const SizedBox(height: 30),
             Expanded(
-              //height: MediaQuery.of(context).size.height *0.5,
+
               child: AspectRatio(
                 aspectRatio: 2/1,
                 child: Container(
-                    margin: EdgeInsets.all(12),
+                    margin: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     image:  DecorationImage(
@@ -79,7 +79,7 @@ SongDetailsController controller = Get.put(SongDetailsController());
             const SizedBox(height: 40),
              Text(
               widget.song.title ?? 'No name',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
@@ -115,21 +115,11 @@ SongDetailsController controller = Get.put(SongDetailsController());
                            );
                 }
                 else{
-                  return LoadignState();
+                  return const LoadignState();
                 }
               },
             ),
          
-            /*  Padding(
-              padding: EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(controller.sliderVal.value.toInt().toString()),
-                  Text('${ widget.song.duration?.toInt() ?? 0}'),
-                ],
-              ),
-            ),*/
             const SizedBox(height: 30),
              SongDetailsControlRow(song:  widget.song,index: widget.index),
 

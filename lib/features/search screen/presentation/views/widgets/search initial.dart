@@ -12,10 +12,9 @@ class SearchInitial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: OutlinedButton(
-        child: Text('There is no songs try now'),
+        child: const Text('There is no songs try now'),
         onPressed: ()async{
          await  BlocProvider.of<SearchPageCubit>(context).loadData(context);
-        // await  BlocProvider.of<HomePageCubit>(context).loadData();
         },
       ),
     );

@@ -1,4 +1,4 @@
-//import 'package:audioplayers/audioplayers.dart';
+
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -13,56 +13,43 @@ import '../../../../home screen/data/song model.dart';
 
 
 
-class SongDetailsControlRow extends StatefulWidget {
-  SongDetailsControlRow({super.key, required this.song,required this.index});
+
+
+class SongDetailsControlRow extends StatelessWidget {
+    SongDetailsControlRow({super.key, required this.song,required this.index});
+
   final Song song;
   final int index;
 
-
-  @override
-  State<SongDetailsControlRow> createState() => _SongDetailsControlRowState();
-}
-
-class _SongDetailsControlRowState extends State<SongDetailsControlRow> {
-  //bool isPlaying = false;
-  SongDetailsController controller = Get.put(SongDetailsController());
-SqlDB sqlDB = SqlDB();
-
-
-@override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    //controller.chekIfFavorite(songId: widget.song.id!);
-  }
 
 
 
   @override
   Widget build(BuildContext context) {
+      final SongDetailsController controller = Get.put(SongDetailsController());
+  final SqlDB sqlDB = SqlDB();
     final SongDetailsCubit songDetailsCubit = BlocProvider.of<SongDetailsCubit>(context);
-   // final player = BlocProvider.of<SongDetailsCubit>(context).player;
-    final dur = controller.player.value.setFilePath(widget.song.data!);
-controller.chekIfFavorite(songId: widget.song.id!);
+
+    final dur = controller.player.value.setFilePath(song.data!);
+controller.chekIfFavorite(songId: song.id!);
     return Obx(() => Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
           onPressed: () async{
-          if(controller.isLiked == false){
+          if(controller.isLiked.value == false){
             await sqlDB.insert({
               'id': songDetailsCubit.songs[songDetailsCubit.index].id!,
-              'i': widget.index,
+              'i': index,
             }, 'favorite');
             controller.isLiked.value = !(controller.isLiked.value);
           }
           else{
-            await sqlDB.delete(widget.song.id!);
+            await sqlDB.delete(song.id!);
             controller.isLiked.value = !(controller.isLiked.value);
           }
 
-           print('pressed ----------------------------------');
+
           },
           icon:  Icon(
             controller.isLiked.value == true? Icons.favorite:Icons.favorite_border,
@@ -88,14 +75,14 @@ controller.chekIfFavorite(songId: widget.song.id!);
             await controller.playSong();
 
           },
-          icon: controller.isPlaying.value? Icon(Icons.pause,size: 40,):Icon(Icons.play_arrow,size: 40,),
+          icon:  Icon(controller.isPlaying.value? Icons.pause:Icons.play_arrow,size: 40,),
         ),
         IconButton(
             onPressed: () async {
 
               await controller.player.value.pause();
               controller.isPlaying.value = false;
-              //controller.sliderVal.value = 0.0;
+
               BlocProvider.of<SliderCubit>(context).prog(0.0);
              if(controller.autoMode.value == 1){
                songDetailsCubit.index++;
@@ -118,9 +105,8 @@ controller.chekIfFavorite(songId: widget.song.id!);
         IconButton(
           onPressed: () async{
             controller.switchMode();
-           // songDetailsCubit.player.seekToNext()
-            setState(() {
-            });
+
+        
           },
           icon:  Icon(
             controller.autoMode.value == 0? Icons.repeat_one:controller.autoMode.value == 1?Icons.repeat:Icons.shuffle,

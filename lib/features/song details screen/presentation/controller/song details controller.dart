@@ -16,8 +16,6 @@ class SongDetailsController extends GetxController{
     chekIfFavorite({required int songId})async{
       isLiked.value = false;
   List data = await sqlDB.query('favorite');
-  print('data query $data ***************////////////////////----------------------------');
-  print('song id $songId  ***************////////////////////----------------------------');
   for(int i = 0;i < data.length; i++){
     if(data[i]['id'] == songId){
         isLiked.value = true;
@@ -27,11 +25,7 @@ class SongDetailsController extends GetxController{
   }
   }
 
-/*
-onCh(double val)async{
-  await player.value.seek(Duration(milliseconds: val.toInt(),),);
-  sliderVal.value = val;
-}*/
+
 
 
 

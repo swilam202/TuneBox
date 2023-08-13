@@ -29,18 +29,11 @@ import 'features/splash screen/presentation/views/splash page.dart';
 void main()async {
 
   WidgetsFlutterBinding.ensureInitialized();
- 
-  //PermissionStatus audioStatus = await Permission.audio.request();
- // PermissionStatus storageStatus = await Permission.storage.request();
-  //if( storageStatus.isGranted){
+
      SqlDB sqlDB = SqlDB();
   sqlDB.db;
   runApp(const MyApp());
- // }
- // else{
- //    storageStatus = await Permission.storage.request();
- //   SystemNavigator.pop();
- // }
+
 
  
 }
@@ -69,75 +62,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: HomePage(),
-//     );
-//   }
-// }
-//
-//
-// class HomePage extends StatefulWidget {
-//    HomePage({super.key});
-//
-//   @override
-//   State<HomePage> createState() => _HomePageState();
-// }
-//
-// class _HomePageState extends State<HomePage> {
-//
-//
-//
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     loadSongs();
-//   }
-//   late List<SongModel> mp3songs;
-//   List<Song> songs = [];
-//   loadSongs()async{
-//     Permission.audio.request();
-//     Permission.storage.request();
-//     print('recaling.........................');
-//     mp3songs = await OnAudioQuery.platform.querySongs();
-//
-//     mp3songs = mp3songs.where((element) => element.data.endsWith('.mp3')).toList();
-//   }
-//
-//   Uint8List? ima;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Center(
-//           child: Column(
-//             children: [
-//               ElevatedButton(
-//                 onPressed: ()async{
-//
-//                   final metaData = await MetadataRetriever.fromFile(File(mp3songs[0].data));
-//
-//                  setState(() {
-//                    ima = metaData.albumArt;
-//                  });
-//                  String data = AsciiDecoder().convert(ima!);
-//                   print(data);
-//                 },
-//                 child: Text('press me'),
-//               ),
-//         ima == null ?  SizedBox(): SizedBox(height: 100,width:100,child: Image.memory(ima!),),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 

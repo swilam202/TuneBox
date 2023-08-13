@@ -8,7 +8,7 @@ import 'package:musicapp/core/widgets/states%20handeling/errror%20state.dart';
 import 'package:musicapp/core/widgets/states%20handeling/inital%20state.dart';
 import 'package:musicapp/core/widgets/states%20handeling/loading%20state.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit/song%20details%20cubit.dart';
 
 
 import 'package:on_audio_query/on_audio_query.dart';

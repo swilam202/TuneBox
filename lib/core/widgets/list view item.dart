@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit/song%20details%20cubit.dart';
 
 
 

@@ -44,14 +44,14 @@ class SqlDB {
     return response;
   }
 
-  insert(Map<String, Object> map,String table) async {
+  insert(Map<String, Object> map, String table) async {
     int response = await _db!.insert(table, map);
     return response;
   }
 
   delete(int id) async {
     int response =
-    await _db!.delete('favorite', where: 'id = ? ', whereArgs: [id]);
+        await _db!.delete('favorite', where: 'id = ? ', whereArgs: [id]);
     return response;
   }
 
@@ -59,6 +59,4 @@ class SqlDB {
     int response = await _db!.delete('songs');
     return response;
   }
-
-
 }

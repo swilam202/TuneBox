@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:musicapp/core/database/sql%20database.dart';
 import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit.dart';
+import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit/song%20details%20cubit.dart';
 
 import '../../../../../slider cubit.dart';
 import '../../../../home screen/data/song model.dart';

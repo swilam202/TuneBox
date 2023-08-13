@@ -1,8 +1,11 @@
-class SliderCubit extends Cubit<SliderState>{
-  SliderCubit():super(InitSliderState());
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-  prog(double val){
+import 'slider state.dart';
+
+class SliderCubit extends Cubit<SliderState> {
+  SliderCubit() : super(InitSliderState());
+
+  progress(double val) {
     emit(SuccessSliderState(progress: val));
   }
-
 }

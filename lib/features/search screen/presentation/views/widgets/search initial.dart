@@ -4,7 +4,6 @@ import 'package:musicapp/features/home%20screen/presentation/manager/home%20page
 
 import '../../manager/search page cubit.dart';
 
-
 class SearchInitial extends StatelessWidget {
   const SearchInitial({super.key});
 
@@ -13,8 +12,8 @@ class SearchInitial extends StatelessWidget {
     return Center(
       child: OutlinedButton(
         child: const Text('There is no songs try now'),
-        onPressed: ()async{
-         await  BlocProvider.of<SearchPageCubit>(context).loadData(context);
+        onPressed: () async {
+          await BlocProvider.of<SearchPageCubit>(context).loadData(context);
         },
       ),
     );

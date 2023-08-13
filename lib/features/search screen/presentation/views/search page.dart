@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:musicapp/core/widgets/states%20handeling/loading%20state.dart';
-import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20state.dart';
-import 'package:musicapp/features/search%20screen/presentation/manager/search%20page%20cubit.dart';
-import 'package:musicapp/features/search%20screen/presentation/views/widgets/search%20fail.dart';
-import 'package:musicapp/features/search%20screen/presentation/views/widgets/search%20initial.dart';
-import 'package:musicapp/features/search%20screen/presentation/views/widgets/search%20loading.dart';
-import 'package:musicapp/features/search%20screen/presentation/views/widgets/search%20success.dart';
 
-import '../../../home screen/presentation/manager/home page cubit.dart';
+import '../../../../core/widgets/states handeling/loading state.dart';
+import '../manager/search page cubit.dart';
 import '../manager/search page state.dart';
-
-
+import 'widgets/search fail.dart';
+import 'widgets/search initial.dart';
+import 'widgets/search success.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +17,13 @@ class SearchPage extends StatelessWidget {
       body: BlocBuilder<SearchPageCubit, SearchPageState>(
         builder: (context, state) {
           if (state is SearchPageSuccessState) {
-            return  SearchSuccess(length: state.length);
+            return SearchSuccess(length: state.length);
           } else if (state is SearchPageFailureState) {
             return const SearchFail();
           } else if (state is SearchPageInitialState) {
             return const SearchInitial();
           } else {
-            return const LoadignState();
+            return const LoadingState();
           }
         },
       ),

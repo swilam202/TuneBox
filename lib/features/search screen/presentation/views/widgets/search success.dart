@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../manager/search page cubit.dart';
 
-
-
 class SearchSuccess extends StatelessWidget {
-  const SearchSuccess({super.key,required this.length});
-final int length;
+  const SearchSuccess({super.key, required this.length});
+
+  final int length;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

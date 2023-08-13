@@ -1,9 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:musicapp/core/database/sql%20database.dart';
-import 'package:musicapp/features/home%20screen/presentation/views/home%20page.dart';
-import 'package:musicapp/features/splash%20screen/presentation/views/widgets/splash%20body.dart';
+
+import '../../../home screen/presentation/views/home page.dart';
+import 'widgets/splash body.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,13 +15,11 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController animationController;
   late Animation<double> animation;
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     initAnimation();
-
   }
 
   @override
@@ -45,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
   initAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
     );
     animation =
         CurvedAnimation(parent: animationController, curve: Curves.bounceInOut);
@@ -54,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen>
             const Duration(milliseconds: 1500),
             () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const  HomePage(),
+                builder: (context) => const HomePage(),
               ),
             ),
           ),

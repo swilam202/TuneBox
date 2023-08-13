@@ -1,23 +1,21 @@
-import 'dart:io';
-import 'dart:typed_data';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_media_metadata/flutter_media_metadata.dart';
-import 'package:musicapp/core/widgets/states%20handeling/errror%20state.dart';
-import 'package:musicapp/core/widgets/states%20handeling/inital%20state.dart';
-import 'package:musicapp/core/widgets/states%20handeling/loading%20state.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/controller/song%20details%20controller.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit/song%20details%20cubit.dart';
 
 
-import 'package:on_audio_query/on_audio_query.dart';
-
+import '../../../../../core/widgets/list view item.dart';
+import '../../../../../core/widgets/states handeling/errror state.dart';
+import '../../../../../core/widgets/states handeling/inital state.dart';
+import '../../../../../core/widgets/states handeling/loading state.dart';
+import '../../../../song details screen/presentation/controller/song details controller.dart';
+import '../../../../song details screen/presentation/manager/song details cubit/song details cubit.dart';
 import '../../manager/home page cubit.dart';
 import '../../manager/home page state.dart';
-import '../../../../../core/widgets/list view item.dart';
 
 class HomePageBody extends StatelessWidget {
+  const HomePageBody({super.key});
+
 
 
 
@@ -49,7 +47,7 @@ class HomePageBody extends StatelessWidget {
             return ErrorState(errorMessage: state.errorMessage);
           }
           else{
-            return const LoadignState();
+            return const LoadingState();
           }
         },
       )

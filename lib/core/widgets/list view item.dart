@@ -1,27 +1,15 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_media_metadata/flutter_media_metadata.dart';
-import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
-import 'package:musicapp/features/song%20details%20screen/presentation/manager/song%20details%20cubit/song%20details%20cubit.dart';
 
-
-
-import 'package:on_audio_query/on_audio_query.dart';
-
-
-import 'get image.dart';
-import '../../features/song details screen/presentation/views/song details page.dart';
 import '../../features/home screen/data/song model.dart';
-
-
+import '../../features/song details screen/presentation/manager/song details cubit/song details cubit.dart';
+import '../../features/song details screen/presentation/views/song details page.dart';
+import 'get image.dart';
 
 class ListViewItem extends StatelessWidget {
-   const ListViewItem({super.key,required this.index});
+  const ListViewItem({super.key, required this.index});
 
-final int index;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +17,10 @@ final int index;
     Song song = BlocProvider.of<SongDetailsCubit>(context).songs[index];
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SongDetailsPage(index: index,)));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => SongDetailsPage(
+                  index: index,
+                )));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
@@ -50,7 +41,7 @@ final int index;
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.red,
-                image:  DecorationImage(
+                image: DecorationImage(
                   image: getImage(song.image),
                   fit: BoxFit.fill,
                 ),
@@ -72,7 +63,7 @@ final int index;
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    song.artist ?? 'Unkown',
+                    song.artist ?? 'Unknown',
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
@@ -83,7 +74,6 @@ final int index;
                 ],
               ),
             ),
-
             const Icon(
               Icons.play_arrow,
               size: 30,
@@ -94,7 +84,4 @@ final int index;
       ),
     );
   }
-
 }
-
-

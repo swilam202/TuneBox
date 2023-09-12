@@ -11,10 +11,10 @@ import '../../manager/slider cubit/slider state.dart';
 import 'control row.dart';
 
 class SongDetailsBody extends StatefulWidget {
-  SongDetailsBody({super.key, required this.song, required this.index});
+  SongDetailsBody({super.key, required this.song});
 
   final Song song;
-  final int index;
+
 
   @override
   State<SongDetailsBody> createState() => _SongDetailsBodyState();
@@ -116,7 +116,7 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
               },
             ),
             const SizedBox(height: 30),
-            SongDetailsControlRow(song: widget.song, index: widget.index),
+            SongDetailsControlRow(song: widget.song),
             const SizedBox(height: 40),
           ],
         ),

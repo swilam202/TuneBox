@@ -12,10 +12,10 @@ import '../../manager/song details cubit/song details cubit.dart';
 
 class SongDetailsControlRow extends StatelessWidget {
   const SongDetailsControlRow(
-      {super.key, required this.song, required this.index});
+      {super.key, required this.song,});
 
   final Song song;
-  final int index;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ class SongDetailsControlRow extends StatelessWidget {
               onPressed: () async {
                 if (controller.isLiked.value == false) {
                   await sqlDB.insert({
-                    'id': songDetailsCubit.songs[songDetailsCubit.index].id!,
-                    'i': index,
+                    'id': song.id!,
+                    'i': song.id!,
                   }, 'favorite');
                   controller.isLiked.value = !(controller.isLiked.value);
                 } else {
@@ -54,9 +54,9 @@ class SongDetailsControlRow extends StatelessWidget {
               onPressed: () async {
                 await controller.player.value.pause();
                 controller.isPlaying.value = false;
-                songDetailsCubit.index--;
+                //songDetailsCubit.index--;
                 BlocProvider.of<SliderCubit>(context).progress(0.0);
-                songDetailsCubit.loadSong();
+                songDetailsCubit.loadSong(song.id!-1);
               },
               icon: const Icon(
                 Icons.skip_previous_rounded,
@@ -79,14 +79,15 @@ class SongDetailsControlRow extends StatelessWidget {
 
                   BlocProvider.of<SliderCubit>(context).progress(0.0);
                   if (controller.autoMode.value == 1) {
-                    songDetailsCubit.index++;
+                    songDetailsCubit.loadSong(song.id!+1);
                   } else if (controller.autoMode.value == 2) {
                     Random r = Random();
-                    songDetailsCubit.index =
-                        r.nextInt(songDetailsCubit.songs.length) - 1;
+                    songDetailsCubit.loadSong(r.nextInt(songDetailsCubit.songs.length) - 1);
+                    //songDetailsCubit.index =
+                    //   r.nextInt(songDetailsCubit.songs.length) - 1;
                   }
 
-                  songDetailsCubit.loadSong();
+                  //songDetailsCubit.loadSong();
                 },
                 icon: const Icon(
                   Icons.skip_next_rounded,
@@ -107,6 +108,6 @@ class SongDetailsControlRow extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        ),);
   }
 }

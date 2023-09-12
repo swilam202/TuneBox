@@ -8,7 +8,7 @@ class SongDetailsCubit extends Cubit<SongDetailsState> {
 
   List<Song> songs = [];
 
-  int index = 0;
+  //int index = 0;
 
   bool isFavorite = false;
 
@@ -16,12 +16,13 @@ class SongDetailsCubit extends Cubit<SongDetailsState> {
     songs = list;
   }
 
-  loadSong() {
+  loadSong(int index) {
+    index--;
     if (index < 0) {
       index = songs.length - 1;
     } else if (index >= songs.length) {
       index = 0;
     }
-    emit(SongDetailsSuccessState(index: index, song: songs[index]));
+    emit(SongDetailsSuccessState(song: songs[index]));
   }
 }

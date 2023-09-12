@@ -24,10 +24,13 @@ class HomePageBody extends StatelessWidget {
               itemCount: state.songs.length,
               itemBuilder: (context, index) {
                 SongDetailsController().pausePlayer();
-
+                  print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                  print('name: ${state.songs[index].title}');
+                  print('id: ${state.songs[index].id}');
+                  print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');   
                 BlocProvider.of<SongDetailsCubit>(context)
                     .getAllSongs(state.songs);
-                return ListViewItem(index: index);
+                return ListViewItem(song: state.songs[index]);
               },
             ),
           );
@@ -39,6 +42,6 @@ class HomePageBody extends StatelessWidget {
           return const LoadingState();
         }
       },
-    ));
+    ),);
   }
 }

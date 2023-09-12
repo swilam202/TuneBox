@@ -13,21 +13,21 @@ class FavoritePageCubit extends Cubit<FavoritePageState> {
 
   getSongs({required List<Song> songs}) async {
     emit(FavoritePageLoadingState());
-    List<Song> data = [];
-    List<int> indexes = [];
+    List<Song> songs = [];
+    //List<int> indexes = [];
     List query = await sqlDB.query('favorite');
     try {
       for (int i = 0; i < query.length; i++) {
         for (int j = 0; j < songs.length; j++) {
           if (query[i]['id'] == songs[j].id) {
-            indexes.add(query[i]['i']);
-            data.add(songs[j]);
+            //indexes.add(query[i]['i']);
+            songs.add(songs[j]);
             break;
           }
         }
       }
 
-      emit(FavoritePageSuccessState(indexes: indexes));
+      emit(FavoritePageSuccessState(songs: songs));
     } catch (e) {
       emit(FavoritePageFailureState(errorMessage: e.toString()));
     }

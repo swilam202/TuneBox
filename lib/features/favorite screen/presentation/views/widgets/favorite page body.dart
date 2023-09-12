@@ -32,9 +32,12 @@ class _FavoritePageBodyState extends State<FavoritePageBody> {
         builder: (context, state) {
           if (state is FavoritePageSuccessState) {
             return ListView.builder(
-              itemCount: state.indexes.length,
+              itemCount: state.songs.length,
               itemBuilder: (context, index) {
-                return ListViewItem(index: state.indexes[index]);
+                return ListViewItem(
+                  song: state.songs[index],
+                  //index: state.indexes[index]
+                  );
               },
             );
           } else if (state is FavoritePageFailureState) {

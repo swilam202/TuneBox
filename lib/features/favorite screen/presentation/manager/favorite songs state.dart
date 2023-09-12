@@ -1,3 +1,5 @@
+import 'package:musicapp/features/home%20screen/data/song%20model.dart';
+
 abstract class FavoritePageState {}
 
 class FavoritePageInitialState extends FavoritePageState {
@@ -9,9 +11,9 @@ class FavoritePageInitialState extends FavoritePageState {
 class FavoritePageLoadingState extends FavoritePageState {}
 
 class FavoritePageSuccessState extends FavoritePageState {
-  List<int> indexes;
+  List<Song> songs;
 
-  FavoritePageSuccessState({required this.indexes});
+  FavoritePageSuccessState({required this.songs});
 }
 
 class FavoritePageFailureState extends FavoritePageState {

@@ -7,20 +7,20 @@ import '../../features/song details screen/presentation/views/song details page.
 import 'get image.dart';
 
 class ListViewItem extends StatelessWidget {
-  const ListViewItem({super.key, required this.index});
+  const ListViewItem({super.key,required this.song});
+final Song song;
 
-  final int index;
 
   @override
   Widget build(BuildContext context) {
     //int index = ;
-    Song song = BlocProvider.of<SongDetailsCubit>(context).songs[index];
+    //Song song = BlocProvider.of<SongDetailsCubit>(context).songs[index];
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => SongDetailsPage(
-              index: index,
+        song: song,
             ),
           ),
         );

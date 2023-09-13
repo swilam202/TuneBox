@@ -10,8 +10,8 @@ import 'widgets/songs details body.dart';
 
 
 class SongDetailsPage extends StatefulWidget {
-  const SongDetailsPage({super.key, required this.song});
-    final Song song;
+  const SongDetailsPage({super.key, required this.id});
+    final int id;
 
   @override
   State<SongDetailsPage> createState() => _SongDetailsPageState();
@@ -23,7 +23,7 @@ class _SongDetailsPageState extends State<SongDetailsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.song.id!);
+    BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.id);
   }
 
   @override

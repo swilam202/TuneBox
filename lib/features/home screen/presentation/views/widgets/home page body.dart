@@ -30,7 +30,7 @@ class HomePageBody extends StatelessWidget {
                   //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');   
                 BlocProvider.of<SongDetailsCubit>(context)
                     .getAllSongs(state.songs);
-                return ListViewItem(song: state.songs[index]);
+                return ListViewItem(id: state.songs[index].id!);
               },
             ),
           );

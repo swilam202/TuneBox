@@ -7,7 +7,12 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text('Favorite songs'),
+        centerTitle: true,
+        backgroundColor: Colors.teal[200],
+      ),
       body: FavoritePageBody(),
     );
   }

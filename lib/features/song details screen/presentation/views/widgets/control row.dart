@@ -55,7 +55,7 @@ class SongDetailsControlRow extends StatelessWidget {
                 await controller.player.value.pause();
                 controller.isPlaying.value = false;
                 //songDetailsCubit.index--;
-                BlocProvider.of<SliderCubit>(context).progress(0.0);
+                //BlocProvider.of<SliderCubit>(context).progress(0.0);
                 songDetailsCubit.loadSong(song.id!-1);
               },
               icon: const Icon(
@@ -77,7 +77,7 @@ class SongDetailsControlRow extends StatelessWidget {
                   await controller.player.value.pause();
                   controller.isPlaying.value = false;
 
-                  BlocProvider.of<SliderCubit>(context).progress(0.0);
+                  //BlocProvider.of<SliderCubit>(context).progress(0.0);
                   if (controller.autoMode.value == 1) {
                     songDetailsCubit.loadSong(song.id!+1);
                   } else if (controller.autoMode.value == 2) {

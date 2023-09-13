@@ -47,6 +47,7 @@ final Song song;
                 image: DecorationImage(
                   image: getImage(song.image),
                   fit: BoxFit.fill,
+                  onError: (exception, stackTrace) => Icon(Icons.error),
                 ),
               ),
             ),

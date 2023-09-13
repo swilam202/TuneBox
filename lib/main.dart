@@ -29,12 +29,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SearchPageCubit()),
         BlocProvider(create: (context) => SongDetailsCubit()),
         BlocProvider(create: (context) => FavoritePageCubit()),
-        BlocProvider(create: (context) => SliderCubit()),
+        //BlocProvider(create: (context) => SliderCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromRGBO(46, 46, 46, 1.0),
+          scaffoldBackgroundColor: Colors.white,
           brightness: Brightness.dark,
         ),
         home: const SplashScreen(),

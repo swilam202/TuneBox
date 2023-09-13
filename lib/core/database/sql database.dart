@@ -27,6 +27,7 @@ class SqlDB {
     title TEXT NOT NULL,
     data TEXT NOT NULL,
     artist TEXT NOT NULL,
+    image TEXT,
     duration INTEGER NOT NULL
     )
     ''');
@@ -44,7 +45,7 @@ class SqlDB {
     return response;
   }
 
-  insert(Map<String, Object> map, String table) async {
+  insert(Map<String, Object?> map, String table) async {
     int response = await _db!.insert(table, map);
     return response;
   }

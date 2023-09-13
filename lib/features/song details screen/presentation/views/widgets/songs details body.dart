@@ -29,7 +29,7 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
     super.initState();
     controller.chekIfFavorite(songId: widget.song.id!);
 
-    BlocProvider.of<SliderCubit>(context).progress(0.0);
+    //BlocProvider.of<SliderCubit>(context).progress(0.0);
   }
 
   @override
@@ -92,7 +92,21 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 30),
-            BlocBuilder<SliderCubit, SliderState>(
+            StreamBuilder<Duration>(
+              stream: controller.player.value.positionStream,
+              builder: (context,snapshot){
+                return Slider(
+                  value: snapshot.data?.inMilliseconds.toDouble() ?? 0.0,
+                  onChanged: (val)async{
+                  Duration newPosition = Duration(milliseconds: val.round());
+                  await controller.player.value.seek(newPosition);
+                 },
+                 min: 0.0,
+                 max: controller.player.value.duration?.inMilliseconds.toDouble() ?? 0.0,
+                 );
+              },
+            ),
+           /* BlocBuilder<SliderCubit, SliderState>(
               builder: (context, state) {
                 if (state is SuccessSliderState) {
                   return Slider(
@@ -114,7 +128,7 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                   return const LoadingState();
                 }
               },
-            ),
+            ),*/
             const SizedBox(height: 30),
             SongDetailsControlRow(song: widget.song),
             const SizedBox(height: 40),

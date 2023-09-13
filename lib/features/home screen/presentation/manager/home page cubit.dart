@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -22,16 +23,16 @@ class HomePageCubit extends Cubit<HomePageState> {
       List query = await sqlDB.query('songs');
 
       for (int i = 0; i < query.length; i++) {
-        Metadata metaData =
-            await MetadataRetriever.fromFile(File(query[i]['data']));
-        Uint8List? unit = metaData.albumArt;
+        //Metadata metaData =
+        //    await MetadataRetriever.fromFile(File(query[i]['data']));
+        //Uint8List? unit = metaData.albumArt;
 
         songs.add(Song(
           id: query[i]['id'],
           artist: query[i]['artist'],
           data: query[i]['data'],
           title: query[i]['title'],
-          image: unit,
+          image: decodeImage(query[i]['image']),
           duration: query[i]['duration'],
           //duration:
         ));
@@ -40,6 +41,19 @@ class HomePageCubit extends Cubit<HomePageState> {
       emit(HomePageSuccessState(songs: songs));
     } catch (e) {
       emit(HomePageFailureState(errorMessage: e.toString()));
+    }
+  }
+
+  Uint8List? decodeImage(String? data){
+    if(data == null){
+      return null;
+    }
+    else{
+      Uint8List? image = base64.decode(data);
+      //print('+++++++++++++++++++++++++++++++encoded++++++++++++++++++++++++++++++');
+      //print(image);
+      //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    return image;
     }
   }
 }

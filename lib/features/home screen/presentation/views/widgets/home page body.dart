@@ -24,10 +24,10 @@ class HomePageBody extends StatelessWidget {
               itemCount: state.songs.length,
               itemBuilder: (context, index) {
                 SongDetailsController().pausePlayer();
-                  print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                  print('name: ${state.songs[index].title}');
-                  print('id: ${state.songs[index].id}');
-                  print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');   
+                  //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+                  //print('name: ${state.songs[index].title}');
+                  //print('id: ${state.songs[index].id}');
+                  //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');   
                 BlocProvider.of<SongDetailsCubit>(context)
                     .getAllSongs(state.songs);
                 return ListViewItem(song: state.songs[index]);

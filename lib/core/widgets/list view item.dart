@@ -81,7 +81,7 @@ final Song song;
             const Icon(
               Icons.play_arrow,
               size: 30,
-              color: Colors.green,
+              color: Colors.blue,
             ),
           ],
         ),

@@ -14,7 +14,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: IconButton(
+        backgroundColor: Colors.teal[200],
+          actions: [
+            IconButton(
           onPressed: () async {
             await SqlDB().query('favorite');
             Navigator.of(context).push(
@@ -23,12 +25,13 @@ class HomePage extends StatelessWidget {
               ),
             );
           },
-          icon: const Icon(
+          icon:  Icon(
             Icons.favorite,
-            color: Colors.green,
+            color: Colors.teal[50],
           ),
         ),
-        actions: [
+        const SizedBox(width: 8),
+       
           IconButton(
             onPressed: () {
               Navigator.of(context).push(
@@ -38,7 +41,7 @@ class HomePage extends StatelessWidget {
               );
             },
             icon: const Icon(Icons.search),
-            color: Colors.green,
+            color: Colors.teal[50],
           ),
         ],
         centerTitle: true,
@@ -46,8 +49,7 @@ class HomePage extends StatelessWidget {
       body: RefreshIndicator(
         onRefresh: () async =>
             await BlocProvider.of<HomePageCubit>(context).loadData(),
-        color: Colors.green,
-        backgroundColor: Colors.green[400],
+      
         child: const HomePageBody(),
       ),
     );

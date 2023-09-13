@@ -47,7 +47,7 @@ class SongDetailsControlRow extends StatelessWidget {
                     ? Icons.favorite
                     : Icons.favorite_border,
                 size: 20,
-                color: Colors.green,
+                color: Colors.blue,
               ),
             ),
             IconButton(
@@ -104,7 +104,7 @@ class SongDetailsControlRow extends StatelessWidget {
                         ? Icons.repeat
                         : Icons.shuffle,
                 size: 20,
-                color: Colors.green,
+                color: Colors.blue,
               ),
             ),
           ],

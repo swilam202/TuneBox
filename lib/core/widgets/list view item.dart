@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 
 import '../../features/home screen/data/song model.dart';
-import '../../features/song details screen/presentation/manager/song details cubit/song details cubit.dart';
+import '../../features/home screen/presentation/manager/home page cubit.dart';
 import '../../features/song details screen/presentation/views/song details page.dart';
 import 'get image.dart';
 
 class ListViewItem extends StatelessWidget {
-  const ListViewItem({super.key,required this.id});
-final int id;
+  const ListViewItem({super.key, required this.id});
 
+  final int id;
 
   @override
   Widget build(BuildContext context) {
-    Song song = BlocProvider.of<HomePageCubit>(context).songs.firstWhere((element) => element.id == id);
-    //int index = ;
-    //Song song = BlocProvider.of<SongDetailsCubit>(context).songs[index];
+    Song song = BlocProvider.of<HomePageCubit>(context)
+        .songs
+        .firstWhere((element) => element.id == id);
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => SongDetailsPage(
-        id: id,
+              id: id,
             ),
           ),
         );

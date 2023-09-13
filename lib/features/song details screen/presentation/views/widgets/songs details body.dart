@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/widgets/get image.dart';
-import '../../../../../core/widgets/states handeling/loading state.dart';
 import '../../../../home screen/data/song model.dart';
 import '../../controller/song details controller.dart';
-import '../../manager/slider cubit/slider cubit.dart';
-import '../../manager/slider cubit/slider state.dart';
 import 'control row.dart';
 
 class SongDetailsBody extends StatefulWidget {
-  SongDetailsBody({super.key, required this.song});
+  const SongDetailsBody({super.key, required this.song});
 
   final Song song;
-
 
   @override
   State<SongDetailsBody> createState() => _SongDetailsBodyState();
@@ -27,9 +22,7 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.chekIfFavorite(songId: widget.song.id!);
-
-    //BlocProvider.of<SliderCubit>(context).progress(0.0);
+    controller.checkIfFavorite(songId: widget.song.id!);
   }
 
   @override
@@ -94,41 +87,20 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
             const SizedBox(height: 30),
             StreamBuilder<Duration>(
               stream: controller.player.value.positionStream,
-              builder: (context,snapshot){
+              builder: (context, snapshot) {
                 return Slider(
                   value: snapshot.data?.inMilliseconds.toDouble() ?? 0.0,
-                  onChanged: (val)async{
-                  Duration newPosition = Duration(milliseconds: val.round());
-                  await controller.player.value.seek(newPosition);
-                 },
-                 min: 0.0,
-                 max: controller.player.value.duration?.inMilliseconds.toDouble() ?? 0.0,
-                 );
+                  onChanged: (val) async {
+                    Duration newPosition = Duration(milliseconds: val.round());
+                    await controller.player.value.seek(newPosition);
+                  },
+                  min: 0.0,
+                  max: controller.player.value.duration?.inMilliseconds
+                          .toDouble() ??
+                      0.0,
+                );
               },
             ),
-           /* BlocBuilder<SliderCubit, SliderState>(
-              builder: (context, state) {
-                if (state is SuccessSliderState) {
-                  return Slider(
-                    value: state.progress,
-                    onChanged: (val) async {
-                      await controller.player.value.seek(
-                        Duration(
-                          milliseconds: val.toInt(),
-                        ),
-                      );
-                      BlocProvider.of<SliderCubit>(context).progress(val);
-                    },
-                    min: 0,
-                    max: widget.song.duration!.toDouble(),
-                    activeColor: Colors.green,
-                    inactiveColor: Colors.green[300],
-                  );
-                } else {
-                  return const LoadingState();
-                }
-              },
-            ),*/
             const SizedBox(height: 30),
             SongDetailsControlRow(song: widget.song),
             const SizedBox(height: 40),

@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen>
         CurvedAnimation(parent: animationController, curve: Curves.bounceInOut);
     animationController.forward().then(
           (value) => Future.delayed(
-            const Duration(milliseconds: 1500),
+            const Duration(milliseconds: 500),
             () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const HomePage(),

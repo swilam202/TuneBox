@@ -36,8 +36,7 @@ class _FavoritePageBodyState extends State<FavoritePageBody> {
               itemBuilder: (context, index) {
                 return ListViewItem(
                   id: state.indexes[index],
-                  //index: state.indexes[index]
-                  );
+                );
               },
             );
           } else if (state is FavoritePageFailureState) {

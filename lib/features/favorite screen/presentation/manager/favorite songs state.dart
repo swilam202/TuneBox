@@ -1,5 +1,3 @@
-import 'package:musicapp/features/home%20screen/data/song%20model.dart';
-
 abstract class FavoritePageState {}
 
 class FavoritePageInitialState extends FavoritePageState {

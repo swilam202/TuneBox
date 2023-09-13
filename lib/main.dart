@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'core/database/sql database.dart';
 import 'features/favorite screen/presentation/manager/favorite song cubit.dart';
 import 'features/home screen/presentation/manager/home page cubit.dart';
 import 'features/search screen/presentation/manager/search page cubit.dart';
-import 'features/song details screen/presentation/manager/slider cubit/slider cubit.dart';
 import 'features/song details screen/presentation/manager/song details cubit/song details cubit.dart';
 import 'features/splash screen/presentation/views/splash page.dart';
 

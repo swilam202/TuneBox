@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:musicapp/features/home%20screen/presentation/manager/home%20page%20cubit.dart';
 
 import '../../manager/search page cubit.dart';
 

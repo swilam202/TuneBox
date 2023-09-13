@@ -15,33 +15,32 @@ class HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: BlocBuilder<HomePageCubit, HomePageState>(
-      builder: (context, state) {
-        if (state is HomePageSuccessState) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: ListView.builder(
-              itemCount: state.songs.length,
-              itemBuilder: (context, index) {
-                SongDetailsController().pausePlayer();
-                  //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-                  //print('name: ${state.songs[index].title}');
-                  //print('id: ${state.songs[index].id}');
-                  //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');   
-                BlocProvider.of<SongDetailsCubit>(context)
-                    .getAllSongs(state.songs);
-                return ListViewItem(id: state.songs[index].id!);
-              },
-            ),
-          );
-        } else if (state is HomePageInitialState) {
-          return InitialState(message: state.message);
-        } else if (state is HomePageFailureState) {
-          return ErrorState(errorMessage: state.errorMessage);
-        } else {
-          return const LoadingState();
-        }
-      },
-    ),);
+    return SafeArea(
+      child: BlocBuilder<HomePageCubit, HomePageState>(
+        builder: (context, state) {
+          if (state is HomePageSuccessState) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: ListView.builder(
+                itemCount: state.songs.length,
+                itemBuilder: (context, index) {
+                  SongDetailsController().pausePlayer();
+
+                  BlocProvider.of<SongDetailsCubit>(context)
+                      .getAllSongs(state.songs);
+                  return ListViewItem(id: state.songs[index].id!);
+                },
+              ),
+            );
+          } else if (state is HomePageInitialState) {
+            return InitialState(message: state.message);
+          } else if (state is HomePageFailureState) {
+            return ErrorState(errorMessage: state.errorMessage);
+          } else {
+            return const LoadingState();
+          }
+        },
+      ),
+    );
   }
 }

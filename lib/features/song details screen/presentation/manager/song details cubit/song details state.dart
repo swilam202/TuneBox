@@ -9,8 +9,7 @@ class SongDetailsLoadingState extends SongDetailsState {}
 class SongDetailsSuccessState extends SongDetailsState {
   Song song;
 
-
-  SongDetailsSuccessState({ required this.song});
+  SongDetailsSuccessState({required this.song});
 }
 
 class SongDetailsFailureState extends SongDetailsState {

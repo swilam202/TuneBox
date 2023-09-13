@@ -8,8 +8,6 @@ class SongDetailsCubit extends Cubit<SongDetailsState> {
 
   List<Song> songs = [];
 
-  //int index = 0;
-
   bool isFavorite = false;
 
   void getAllSongs(List<Song> list) {

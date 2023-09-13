@@ -9,9 +9,8 @@ class SongDetailsController extends GetxController {
   Rx<AudioPlayer> player = AudioPlayer().obs;
   RxBool isPlaying = false.obs;
   RxInt autoMode = 1.obs;
-  RxDouble sliderVal = 50000.0.obs;
 
-  chekIfFavorite({required int songId}) async {
+  checkIfFavorite({required int songId}) async {
     isLiked.value = false;
     List data = await sqlDB.query('favorite');
     for (int i = 0; i < data.length; i++) {
@@ -38,10 +37,9 @@ class SongDetailsController extends GetxController {
   }
 
   switchMode() {
+    autoMode.value++;
     if (autoMode.value > 2) {
       autoMode.value = 0;
-    } else {
-      autoMode.value++;
     }
   }
 }

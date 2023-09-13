@@ -1,15 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'dart:convert';
+
 import '../../../../core/database/sql database.dart';
 import '../views/widgets/dialog button.dart';
 import 'search page state.dart';
-import 'dart:io';
-import 'dart:typed_data';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit()
@@ -32,12 +34,11 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         mp3songs =
             mp3songs.where((element) => element.data.endsWith('.mp3')).toList();
 
-            
         for (int i = 0; i < mp3songs.length; i++) {
           Metadata metaData =
-            await MetadataRetriever.fromFile(File(mp3songs[i].data));
-        Uint8List? unit = metaData.albumArt;
-        //String? encodedImage = encodeImage(unit);
+              await MetadataRetriever.fromFile(File(mp3songs[i].data));
+          Uint8List? unit = metaData.albumArt;
+          //String? encodedImage = encodeImage(unit);
 
           sqlDB.insert({
             'title': mp3songs[i].title,
@@ -81,17 +82,15 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(SearchPageInitialState());
   }
 */
-  String? encodeImage(Uint8List? data){
-    if(data == null){
+  String? encodeImage(Uint8List? data) {
+    if (data == null) {
       return null;
-    }
-    else{
+    } else {
       String image = base64.encode(data);
       //print('+++++++++++++++++++++++++++++++encoded++++++++++++++++++++++++++++++');
       //print(image);
       //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-    return image;
-    
+      return image;
     }
   }
 }

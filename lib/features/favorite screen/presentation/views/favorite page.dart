@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'widgets/favorite page body.dart';
 
 class FavoritePage extends StatelessWidget {
-  const FavoritePage({super.key, required});
+  const FavoritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Favorite songs'),
+        title: const Text('Favorite songs'),
         centerTitle: true,
         backgroundColor: Colors.teal[200],
       ),
-      body: FavoritePageBody(),
+      body: const FavoritePageBody(),
     );
   }
 }

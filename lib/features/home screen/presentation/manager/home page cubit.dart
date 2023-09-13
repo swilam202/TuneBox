@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 
 import '../../../../core/database/sql database.dart';
 import '../../data/song model.dart';
@@ -23,10 +21,6 @@ class HomePageCubit extends Cubit<HomePageState> {
       List query = await sqlDB.query('songs');
 
       for (int i = 0; i < query.length; i++) {
-        //Metadata metaData =
-        //    await MetadataRetriever.fromFile(File(query[i]['data']));
-        //Uint8List? unit = metaData.albumArt;
-
         songs.add(Song(
           id: query[i]['id'],
           artist: query[i]['artist'],
@@ -34,7 +28,6 @@ class HomePageCubit extends Cubit<HomePageState> {
           title: query[i]['title'],
           image: decodeImage(query[i]['image']),
           duration: query[i]['duration'],
-          //duration:
         ));
       }
 
@@ -44,16 +37,12 @@ class HomePageCubit extends Cubit<HomePageState> {
     }
   }
 
-  Uint8List? decodeImage(String? data){
-    if(data == null){
+  Uint8List? decodeImage(String? data) {
+    if (data == null) {
       return null;
-    }
-    else{
+    } else {
       Uint8List? image = base64.decode(data);
-      //print('+++++++++++++++++++++++++++++++encoded++++++++++++++++++++++++++++++');
-      //print(image);
-      //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-    return image;
+      return image;
     }
   }
 }

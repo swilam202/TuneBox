@@ -11,7 +11,6 @@ import 'features/splash screen/presentation/views/splash page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   SqlDB sqlDB = SqlDB();
   await sqlDB.db;
   runApp(const MyApp());

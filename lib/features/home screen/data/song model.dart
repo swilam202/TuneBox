@@ -6,14 +6,14 @@ class Song {
   final String? data;
   final int? duration;
   final String? artist;
-  final Uint8List? image;
+  final int songId;
 
   Song({
     this.id,
     this.title,
     this.artist,
     this.data,
-    this.image,
+    required this.songId,
     this.duration,
   });
 }

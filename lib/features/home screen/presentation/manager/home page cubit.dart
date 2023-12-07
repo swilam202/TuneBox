@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../../core/database/sql database.dart';
 import '../../data/song model.dart';
@@ -13,8 +14,13 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   SqlDB sqlDB = SqlDB();
   List<Song> songs = [];
+/*
+ Future<QueryArtworkWidget>  lod()async{
+    return QueryArtworkWidget(id: 5, type: ArtworkType.AUDIO);
+  }*/
 
   loadData() async {
+    
     emit(HomePageLoadingState());
 
     try {
@@ -26,7 +32,7 @@ class HomePageCubit extends Cubit<HomePageState> {
           artist: query[i]['artist'],
           data: query[i]['data'],
           title: query[i]['title'],
-          image: decodeImage(query[i]['image']),
+          songId: query[i]['song_id'],
           duration: query[i]['duration'],
         ));
       }
@@ -36,13 +42,6 @@ class HomePageCubit extends Cubit<HomePageState> {
       emit(HomePageFailureState(errorMessage: e.toString()));
     }
   }
-
-  Uint8List? decodeImage(String? data) {
-    if (data == null) {
-      return null;
-    } else {
-      Uint8List? image = base64.decode(data);
-      return image;
-    }
-  }
 }
+
+

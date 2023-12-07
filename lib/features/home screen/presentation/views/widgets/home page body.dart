@@ -21,7 +21,7 @@ class HomePageBody extends StatelessWidget {
           if (state is HomePageSuccessState) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: ListView.builder(
+              child: ListView.separated(
                 itemCount: state.songs.length,
                 itemBuilder: (context, index) {
                   SongDetailsController().pausePlayer();
@@ -29,6 +29,15 @@ class HomePageBody extends StatelessWidget {
                   BlocProvider.of<SongDetailsCubit>(context)
                       .getAllSongs(state.songs);
                   return ListViewItem(id: state.songs[index].id!);
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    color: Colors.grey,
+                    thickness: 2,
+                    indent: 20,
+                    endIndent: 20,
+
+                  );
                 },
               ),
             );

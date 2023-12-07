@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../../../core/widgets/get image.dart';
 import '../../../../home screen/data/song model.dart';
@@ -55,11 +56,12 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                   margin: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    image: DecorationImage(
+                   /* image: DecorationImage(
                       image: getImage(widget.song.image),
                       fit: BoxFit.fill,
-                    ),
+                    ),*/
                   ),
+                  child: QueryArtworkWidget(id: widget.song.songId,type:ArtworkType.AUDIO),
                 ),
               ),
             ),

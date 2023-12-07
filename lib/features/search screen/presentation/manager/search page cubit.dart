@@ -4,7 +4,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -35,16 +34,16 @@ class SearchPageCubit extends Cubit<SearchPageState> {
             mp3songs.where((element) => element.data.endsWith('.mp3')).toList();
 
         for (int i = 0; i < mp3songs.length; i++) {
-          Metadata metaData =
+        /*  Metadata metaData =
               await MetadataRetriever.fromFile(File(mp3songs[i].data));
-          Uint8List? unit = metaData.albumArt;
+          Uint8List? unit = metaData.albumArt;*/
           //String? encodedImage = encodeImage(unit);
-
+          Uint8List? unit = await OnAudioQuery.platform.queryArtwork(mp3songs[i].id, ArtworkType.AUDIO);
           sqlDB.insert({
             'title': mp3songs[i].title,
             'data': mp3songs[i].data,
             'artist': mp3songs[i].artist ?? 'Unknown',
-            'image': encodeImage(unit),
+            'song_id': mp3songs[i].id,//encodeImage(unit),
             'duration': mp3songs[i].duration ?? 0,
           }, 'songs');
         }
@@ -56,19 +55,19 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     } else {
       Get.defaultDialog(
         backgroundColor: Colors.black,
-        title: 'The app needs storage permissins!',
+        title: 'The app needs storage permissions!',
         titlePadding:
             const EdgeInsets.only(top: 16, bottom: 8, right: 12, left: 12),
         content: Row(
           children: [
             DialogButton(
                 onPressed: () => Navigator.of(context).pop(),
-                text: "Don't allow"),
+                text: "Don't allow",),
             DialogButton(
                 onPressed: () {
                   openAppSettings();
                 },
-                text: "Allow"),
+                text: "Allow",),
           ],
         ),
       );
@@ -81,7 +80,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 /* void getBack(){
     emit(SearchPageInitialState());
   }
-*/
+
   String? encodeImage(Uint8List? data) {
     if (data == null) {
       return null;
@@ -92,5 +91,5 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
       return image;
     }
-  }
+  }*/
 }

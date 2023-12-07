@@ -24,10 +24,10 @@ class SqlDB {
     batch.execute('''
     CREATE TABLE songs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    song_id INTEGER,
     title TEXT NOT NULL,
     data TEXT NOT NULL,
     artist TEXT NOT NULL,
-    image TEXT,
     duration INTEGER NOT NULL
     )
     ''');

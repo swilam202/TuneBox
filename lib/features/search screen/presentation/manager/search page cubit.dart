@@ -38,7 +38,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
               await MetadataRetriever.fromFile(File(mp3songs[i].data));
           Uint8List? unit = metaData.albumArt;*/
           //String? encodedImage = encodeImage(unit);
-          Uint8List? unit = await OnAudioQuery.platform.queryArtwork(mp3songs[i].id, ArtworkType.AUDIO);
+          //Uint8List? unit = await OnAudioQuery.platform.queryArtwork(mp3songs[i].id, ArtworkType.AUDIO);
           sqlDB.insert({
             'title': mp3songs[i].title,
             'data': mp3songs[i].data,
@@ -54,17 +54,20 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       }
     } else {
       Get.defaultDialog(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         title: 'The app needs storage permissions!',
         titlePadding:
-            const EdgeInsets.only(top: 16, bottom: 8, right: 12, left: 12),
+            const EdgeInsets.only(top: 20, bottom: 20, right: 12, left: 12),
         content: Row(
           children: [
             DialogButton(
+              color: Colors.red,
                 onPressed: () => Navigator.of(context).pop(),
                 text: "Don't allow",),
             DialogButton(
+              color: Colors.green,
                 onPressed: () {
+                 // Navigator.of(context).pop();
                   openAppSettings();
                 },
                 text: "Allow",),

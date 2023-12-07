@@ -11,7 +11,7 @@ class FavoritePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Favorite songs'),
         centerTitle: true,
-        backgroundColor: Colors.teal[200],
+
       ),
       body: const FavoritePageBody(),
     );

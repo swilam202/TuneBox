@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-import '../../../../../core/widgets/get image.dart';
 import '../../../../home screen/data/song model.dart';
 import '../../controller/song details controller.dart';
 import 'control row.dart';
@@ -56,12 +55,9 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                   margin: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                   /* image: DecorationImage(
-                      image: getImage(widget.song.image),
-                      fit: BoxFit.fill,
-                    ),*/
                   ),
-                  child: QueryArtworkWidget(id: widget.song.songId,type:ArtworkType.AUDIO),
+                  child: QueryArtworkWidget(
+                      id: widget.song.songId, type: ArtworkType.AUDIO),
                 ),
               ),
             ),
@@ -95,7 +91,8 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                     Slider(
                       value: snapshot.data?.inMilliseconds.toDouble() ?? 0.0,
                       onChanged: (val) async {
-                        Duration newPosition = Duration(milliseconds: val.round());
+                        Duration newPosition =
+                            Duration(milliseconds: val.round());
                         await controller.player.value.seek(newPosition);
                       },
                       min: 0.0,
@@ -108,8 +105,14 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(getDuration(snapshot.data?.inSeconds ?? 0),),
-                          Text(getDuration(controller.player.value.duration?.inSeconds ?? 0),),
+                          Text(
+                            getDuration(snapshot.data?.inSeconds ?? 0),
+                          ),
+                          Text(
+                            getDuration(
+                                controller.player.value.duration?.inSeconds ??
+                                    0),
+                          ),
                         ],
                       ),
                     ),
@@ -125,20 +128,17 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
       ),
     );
   }
-    String getDuration(num position){
+
+  String getDuration(num position) {
     int minutes = 0;
-    while(position.toInt() >= 60){
+    while (position.toInt() >= 60) {
       minutes += 1;
-      position -=60;
-
+      position -= 60;
     }
-   if(position.toInt() < 10){
-     return '$minutes:0$position';
-   }
-   else{
-     return '$minutes:$position';
-   }
-
+    if (position.toInt() < 10) {
+      return '$minutes:0$position';
+    } else {
+      return '$minutes:$position';
     }
-
+  }
 }

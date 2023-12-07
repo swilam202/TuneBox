@@ -5,15 +5,12 @@ import 'package:on_audio_query/on_audio_query.dart';
 import '../../features/home screen/data/song model.dart';
 import '../../features/home screen/presentation/manager/home page cubit.dart';
 import '../../features/song details screen/presentation/views/song details page.dart';
-import 'get image.dart';
 
 class ListViewItem extends StatelessWidget {
   const ListViewItem({super.key, required this.id});
 
   final int id;
-  /*Future<QueryArtworkWidget>  lod(int id)async{
-    return QueryArtworkWidget(id: id, type: ArtworkType.AUDIO);
-  }*/
+
   @override
   Widget build(BuildContext context) {
     Song song = BlocProvider.of<HomePageCubit>(context)
@@ -33,7 +30,6 @@ class ListViewItem extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
         padding: const EdgeInsets.all(8),
-
         child: Row(
           children: [
             Container(
@@ -42,13 +38,11 @@ class ListViewItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.transparent,
-               /* image: DecorationImage(
-                  image: getImage(song.image),
-                  fit: BoxFit.fill,
-                  onError: (exception, stackTrace) => Icon(Icons.error),
-                ),*/
               ),
-              child: QueryArtworkWidget(id: song.songId,type: ArtworkType.AUDIO,),
+              child: QueryArtworkWidget(
+                id: song.songId,
+                type: ArtworkType.AUDIO,
+              ),
             ),
             const SizedBox(width: 20),
             Expanded(

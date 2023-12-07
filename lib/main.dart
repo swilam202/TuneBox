@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 
 import 'core/database/sql database.dart';
 import 'features/favorite screen/presentation/manager/favorite song cubit.dart';
@@ -27,16 +27,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SearchPageCubit()),
         BlocProvider(create: (context) => SongDetailsCubit()),
         BlocProvider(create: (context) => FavoritePageCubit()),
-        //BlocProvider(create: (context) => SliderCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           brightness: Brightness.light,
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: Colors.blue,
-          )
+          ),
         ),
         home: const SplashScreen(),
       ),

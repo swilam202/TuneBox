@@ -39,8 +39,9 @@ class SearchSuccess extends StatelessWidget {
           ),
           OutlinedButton(
             child: const Text('Search again'),
-            onPressed: ()async =>
-               await BlocProvider.of<SearchPageCubit>(context).loadData(context),
+            onPressed: () async =>
+                await BlocProvider.of<SearchPageCubit>(context)
+                    .loadData(context),
           ),
         ],
       ),

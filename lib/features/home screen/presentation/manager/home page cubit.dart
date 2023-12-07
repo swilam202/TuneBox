@@ -1,8 +1,4 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../../core/database/sql database.dart';
 import '../../data/song model.dart';
@@ -14,13 +10,8 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   SqlDB sqlDB = SqlDB();
   List<Song> songs = [];
-/*
- Future<QueryArtworkWidget>  lod()async{
-    return QueryArtworkWidget(id: 5, type: ArtworkType.AUDIO);
-  }*/
 
   loadData() async {
-    
     emit(HomePageLoadingState());
 
     try {
@@ -43,5 +34,3 @@ class HomePageCubit extends Cubit<HomePageState> {
     }
   }
 }
-
-

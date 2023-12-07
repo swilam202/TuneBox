@@ -36,7 +36,6 @@ class HomePageBody extends StatelessWidget {
                     thickness: 2,
                     indent: 20,
                     endIndent: 20,
-
                   );
                 },
               ),

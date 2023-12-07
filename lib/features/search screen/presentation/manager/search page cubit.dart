@@ -1,7 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -34,16 +30,11 @@ class SearchPageCubit extends Cubit<SearchPageState> {
             mp3songs.where((element) => element.data.endsWith('.mp3')).toList();
 
         for (int i = 0; i < mp3songs.length; i++) {
-        /*  Metadata metaData =
-              await MetadataRetriever.fromFile(File(mp3songs[i].data));
-          Uint8List? unit = metaData.albumArt;*/
-          //String? encodedImage = encodeImage(unit);
-          //Uint8List? unit = await OnAudioQuery.platform.queryArtwork(mp3songs[i].id, ArtworkType.AUDIO);
           sqlDB.insert({
             'title': mp3songs[i].title,
             'data': mp3songs[i].data,
             'artist': mp3songs[i].artist ?? 'Unknown',
-            'song_id': mp3songs[i].id,//encodeImage(unit),
+            'song_id': mp3songs[i].id,
             'duration': mp3songs[i].duration ?? 0,
           }, 'songs');
         }
@@ -62,37 +53,20 @@ class SearchPageCubit extends Cubit<SearchPageState> {
           children: [
             DialogButton(
               color: Colors.red,
-                onPressed: () => Navigator.of(context).pop(),
-                text: "Don't allow",),
+              onPressed: () => Navigator.of(context).pop(),
+              text: "Don't allow",
+            ),
             DialogButton(
               color: Colors.green,
-                onPressed: () {
-                 // Navigator.of(context).pop();
-                  openAppSettings();
-                },
-                text: "Allow",),
+              onPressed: () {
+                openAppSettings();
+                Navigator.of(context).pop();
+              },
+              text: "Allow",
+            ),
           ],
         ),
       );
-      //status = await Permission.storage.status;
-
-      //status = await Permission.storage.request();
     }
   }
-
-/* void getBack(){
-    emit(SearchPageInitialState());
-  }
-
-  String? encodeImage(Uint8List? data) {
-    if (data == null) {
-      return null;
-    } else {
-      String image = base64.encode(data);
-      //print('+++++++++++++++++++++++++++++++encoded++++++++++++++++++++++++++++++');
-      //print(image);
-      //print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-      return image;
-    }
-  }*/
 }

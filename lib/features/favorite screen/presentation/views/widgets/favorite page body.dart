@@ -19,7 +19,6 @@ class FavoritePageBody extends StatefulWidget {
 class _FavoritePageBodyState extends State<FavoritePageBody> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     BlocProvider.of<FavoritePageCubit>(context)
         .getSongs(songs: BlocProvider.of<HomePageCubit>(context).songs);

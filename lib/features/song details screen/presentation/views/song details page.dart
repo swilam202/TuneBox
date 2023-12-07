@@ -18,7 +18,6 @@ class SongDetailsPage extends StatefulWidget {
 class _SongDetailsPageState extends State<SongDetailsPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     BlocProvider.of<SongDetailsCubit>(context).loadSong(widget.id);
   }

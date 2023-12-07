@@ -90,16 +90,30 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
             StreamBuilder<Duration>(
               stream: controller.player.value.positionStream,
               builder: (context, snapshot) {
-                return Slider(
-                  value: snapshot.data?.inMilliseconds.toDouble() ?? 0.0,
-                  onChanged: (val) async {
-                    Duration newPosition = Duration(milliseconds: val.round());
-                    await controller.player.value.seek(newPosition);
-                  },
-                  min: 0.0,
-                  max: controller.player.value.duration?.inMilliseconds
-                          .toDouble() ??
-                      0.0,
+                return Column(
+                  children: [
+                    Slider(
+                      value: snapshot.data?.inMilliseconds.toDouble() ?? 0.0,
+                      onChanged: (val) async {
+                        Duration newPosition = Duration(milliseconds: val.round());
+                        await controller.player.value.seek(newPosition);
+                      },
+                      min: 0.0,
+                      max: controller.player.value.duration?.inMilliseconds
+                              .toDouble() ??
+                          0.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(getDuration(snapshot.data?.inSeconds ?? 0),),
+                          Text(getDuration(controller.player.value.duration?.inSeconds ?? 0),),
+                        ],
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
@@ -111,4 +125,20 @@ class _SongDetailsBodyState extends State<SongDetailsBody> {
       ),
     );
   }
+    String getDuration(num position){
+    int minutes = 0;
+    while(position.toInt() >= 60){
+      minutes += 1;
+      position -=60;
+
+    }
+   if(position.toInt() < 10){
+     return '$minutes:0$position';
+   }
+   else{
+     return '$minutes:$position';
+   }
+
+    }
+
 }

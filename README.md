@@ -1,16 +1,15 @@
-# musicapp
+a music player app that loads the songs stored on your device and allows you to play them using bloc state management.
 
-A new Flutter project.
+Good looking splash screen 
+![Screenshot_2023-12-13-11-34-56-38_45c1a2c546c1297501f699515fc69c0f](https://github.com/swilam202/TuneBox/assets/123952365/a44198bf-0f7a-4517-9bd0-d41cfe995267)
 
-## Getting Started
+Search for songs inside your device
+![Screenshot_2023-12-13-11-35-05-69_45c1a2c546c1297501f699515fc69c0f](https://github.com/swilam202/TuneBox/assets/123952365/dc3ede4c-60e1-4df3-8432-4931653e90bc)
 
-This project is a starting point for a Flutter application.
+List the songs from the seach query
+![Screenshot_2023-12-13-11-35-34-33_45c1a2c546c1297501f699515fc69c0f](https://github.com/swilam202/TuneBox/assets/123952365/8d4a4c87-65d5-4c4f-a8ad-7f0f18ceaa28)
 
-A few resources to get you started if this is your first Flutter project:
+Plays songs, seek inside songs toggle between songs
+![Screenshot_2023-12-13-11-36-24-65_45c1a2c546c1297501f699515fc69c0f](https://github.com/swilam202/TuneBox/assets/123952365/84099872-f95b-4d3d-adb0-ba31cbe6f9a5)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Favorite songs list
